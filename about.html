@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>About the Project | Rural Saskatchewan Help Navigator</title>
+
+  <style>
+    :root {
+      --green-dark:#163524;
+      --green:#24533a;
+      --gold:#b88a2b;
+      --cream:#f7f1e3;
+      --white:#fffaf0;
+      --burgundy:#8b1e2d;
+      --burgundy-dark:#661420;
+      --text:#1f1f1f;
+      --muted:#625d52;
+      --border:rgba(36,83,58,.18);
+      --shadow:0 18px 45px rgba(22,53,36,.12);
+    }
+
+    * {
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body {
+      font-family:Georgia, "Times New Roman", serif;
+      background:var(--cream);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    .top-bar {
+      background:var(--green-dark);
+      color:var(--white);
+      text-align:center;
+      padding:.75rem 1rem;
+      font-size:.9rem;
+    }
+
+    header {
+      background:linear-gradient(135deg,var(--green-dark),var(--green));
+      color:var(--white);
+      padding:4rem 1.5rem;
+      border-bottom:7px solid var(--gold);
+    }
+
+    .header-inner,
+    main {
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    .back-link {
+      color:var(--gold);
+      text-decoration:none;
+      font-weight:bold;
+      display:inline-block;
+      margin-bottom:1.5rem;
+    }
+
+    .page-brand {
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:.9rem;
+      font-weight:bold;
+      margin-bottom:1rem;
+    }
+
+    h1 {
+      font-size:clamp(2.5rem,5vw,4.7rem);
+      line-height:1.1;
+      margin-bottom:1rem;
+    }
+
+    .subtitle {
+      max-width:820px;
+      color:#f3ead7;
+      font-size:1.15rem;
+    }
+
+    main {
+      padding:4rem 1.5rem;
+    }
+
+    .intro-box {
+      background:var(--white);
+      border-left:7px solid var(--gold);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:2rem;
+      margin-bottom:2.5rem;
+    }
+
+    .intro-box h2,
+    .notice-box h2 {
+      color:var(--green-dark);
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .intro-box p,
+    .notice-box p {
+      color:var(--muted);
+      margin-bottom:1rem;
+      font-size:1.05rem;
+    }
+
+    .intro-box p:last-child,
+    .notice-box p:last-child {
+      margin-bottom:0;
+    }
+
+    .solution-box {
+      background:var(--green-dark);
+      color:var(--white);
+      border-left:8px solid var(--gold);
+      border-radius:24px;
+      padding:2rem;
+      margin-bottom:2.5rem;
+      box-shadow:var(--shadow);
+    }
+
+    .solution-box h2 {
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .solution-box p,
+    .solution-box ul {
+      color:#f3ead7;
+    }
+
+    .solution-box ul {
+      margin-left:1.5rem;
+      margin-top:1rem;
+    }
+
+    .solution-box li {
+      margin-bottom:.6rem;
+    }
+
+    .notice-box {
+      background:var(--white);
+      border-left:7px solid var(--gold);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:1.8rem;
+      margin-bottom:2.5rem;
+    }
+
+    .button-link {
+      display:inline-block;
+      background:var(--burgundy);
+      color:white;
+      text-decoration:none;
+      padding:.85rem 1.2rem;
+      border-radius:999px;
+      font-weight:bold;
+      transition:.25s ease;
+      margin-top:.4rem;
+      margin-right:.5rem;
+    }
+
+    .button-link:hover {
+      background:var(--burgundy-dark);
+      transform:translateY(-2px);
+    }
+
+    .site-links h2 {
+      color:var(--green-dark);
+      text-align:center;
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .link-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+    }
+
+    .nav-card {
+      background:var(--white);
+      color:var(--green-dark);
+      text-decoration:none;
+      text-align:center;
+      padding:1.2rem;
+      border-radius:18px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      font-weight:bold;
+      transition:.25s ease;
+    }
+
+    .nav-card:hover {
+      transform:translateY(-4px);
+      border-color:var(--gold);
+    }
+
+    footer {
+      background:var(--green-dark);
+      color:var(--white);
+      text-align:center;
+      padding:2rem 1rem;
+      margin-top:3rem;
+      border-top:6px solid var(--gold);
+    }
+
+    footer p {
+      color:#f3ead7;
+    }
+
+    @media(max-width:850px) {
+      .link-grid {
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    Rural Saskatchewan Help Navigator
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="back-link">← Back to Home</a>
+
+      <p class="page-brand">Rural Saskatchewan Help Navigator</p>
+
+      <h1>About the Rural Access to Justice Saskatchewan Project</h1>
+
+      <p class="subtitle">
+        The Rural Saskatchewan Help Navigator is part of a broader student-led
+        initiative focused on improving access to legal and community information
+        in rural Saskatchewan.
+      </p>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="intro-box">
+      <h2>About the Project</h2>
+
+      <p>
+        The Rural Saskatchewan Help Navigator is part of the Rural Access to Justice
+        Saskatchewan Project, a student-led initiative that aims to help residents,
+        particularly those in rural communities across the province, find the right
+        resources for legal help.
+      </p>
+
+      <p>
+        The barriers that exist in these areas are not limited to the lack of legal
+        resources in smaller communities, but also to the fact that many people often
+        do not know where to start or how to get the proper, tailored help for their
+        situation.
+      </p>
+
+      <p>
+        One of the major differences between large urban centres and rural communities
+        is that there might not be a large law firm that is accessible just down the
+        street for residents to find. There are fewer advertisements for legal help
+        and fewer resources, such as day-to-day information that gets passed on within
+        communities, leading many residents to not know where to start with their
+        situation.
+      </p>
+
+      <p>
+        Furthermore, with limited access, the right kind of help can be difficult to
+        identify, which is what this website seeks to bridge. Different from other
+        legal websites, this website puts all the relevant information regarding legal
+        help in one place and breaks down the necessary steps, from the very start to
+        where to get help, in a simplified manner, directing people to official
+        organizations that can provide further assistance.
+      </p>
+
+      <p>
+        Ultimately, this project is founded on a simple belief: everyone deserves to
+        understand where they can turn for help, regardless of where they live.
+      </p>
+    </section>
+
+    <section class="solution-box">
+      <h2>The Approach</h2>
+
+      <p>
+        The Rural Saskatchewan Help Navigator has been designed around a simple idea:
+        finding the right help should not be complicated.
+      </p>
+
+      <ul>
+        <li>Provide public legal information in one accessible location.</li>
+        <li>Connect users with official organizations and community services.</li>
+        <li>Present information in a clear and easy-to-navigate format.</li>
+        <li>Recognize that legal, housing, employment, immigration, and mental health issues often overlap.</li>
+        <li>Offer a free and publicly accessible starting point for anyone seeking help.</li>
+      </ul>
+    </section>
+
+    <section class="intro-box">
+      <h2>About the Creator</h2>
+
+      <p>
+        This project was created by Ruby, a student at the University of Toronto
+        with an interest in improving access to justice in rural communities.
+        Through research and community-focused work, the goal of this initiative
+        is to make trusted public legal information easier to access by bringing
+        together legal and community resources in one practical and accessible place.
+      </p>
+    </section>
+
+    <section class="notice-box">
+      <h2>Disclaimer</h2>
+
+      <p>
+        The Rural Saskatchewan Help Navigator provides public legal information only.
+        It does not provide legal advice and should not be considered a substitute
+        for speaking with a lawyer or another qualified professional. Users should
+        verify information directly with the relevant organizations, as services,
+        policies, contact information, and eligibility requirements may change over time.
+      </p>
+    </section>
+
+    <section class="notice-box">
+      <p>
+        Need the full printable version? Download the complete Public Information Guide.
+      </p>
+
+      <a href="guide.pdf" download class="button-link">Download the Guide</a>
+    </section>
+
+    <section class="site-links">
+      <h2>Continue exploring the site</h2>
+
+      <div class="link-grid">
+        <a href="start-here.html" class="nav-card">Start Here</a>
+        <a href="find-help.html" class="nav-card">Find Help by Situation</a>
+        <a href="legal-help.html" class="nav-card">Legal Help</a>
+        <a href="mental-health.html" class="nav-card">Mental Health & Addictions</a>
+        <a href="housing-employment.html" class="nav-card">Housing & Employment</a>
+        <a href="immigration-support.html" class="nav-card">Immigration Support</a>
+        <a href="overlap.html" class="nav-card">When Problems Overlap</a>
+        <a href="barriers.html" class="nav-card">Barriers to Legal Help in Rural Areas</a>
+        <a href="index.html" class="nav-card">Home</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Rural Saskatchewan Help Navigator</p>
+  </footer>
+
+</body>
+</html>

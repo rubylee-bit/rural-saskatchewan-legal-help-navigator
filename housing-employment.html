@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Housing & Employment | Rural Saskatchewan Help Navigator</title>
+
+  <style>
+    :root {
+      --green-dark:#163524;
+      --green:#24533a;
+      --gold:#b88a2b;
+      --cream:#f7f1e3;
+      --white:#fffaf0;
+      --burgundy:#8b1e2d;
+      --burgundy-dark:#661420;
+      --text:#1f1f1f;
+      --muted:#625d52;
+      --border:rgba(36,83,58,.18);
+      --shadow:0 18px 45px rgba(22,53,36,.12);
+    }
+
+    * {
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body {
+      font-family:Georgia, "Times New Roman", serif;
+      background:var(--cream);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    .top-bar {
+      background:var(--green-dark);
+      color:var(--white);
+      text-align:center;
+      padding:.75rem 1rem;
+      font-size:.9rem;
+    }
+
+    header {
+      background:linear-gradient(135deg,var(--green-dark),var(--green));
+      color:var(--white);
+      padding:4rem 1.5rem;
+      border-bottom:7px solid var(--gold);
+    }
+
+    .header-inner,
+    main {
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    .back-link {
+      color:var(--gold);
+      text-decoration:none;
+      font-weight:bold;
+      display:inline-block;
+      margin-bottom:1.5rem;
+    }
+
+    h1 {
+      font-size:clamp(2.5rem,5vw,4.7rem);
+      line-height:1.1;
+      margin-bottom:1rem;
+    }
+
+    .subtitle {
+      max-width:820px;
+      color:#f3ead7;
+      font-size:1.15rem;
+    }
+
+    main {
+      padding:4rem 1.5rem;
+    }
+
+    .notice-box {
+      background:var(--white);
+      border-left:7px solid var(--gold);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:1.8rem;
+      margin-bottom:2.5rem;
+    }
+
+    .quick-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+      margin-bottom:3rem;
+    }
+
+    .quick-card {
+      background:var(--white);
+      color:var(--green-dark);
+      text-decoration:none;
+      text-align:center;
+      padding:1.2rem;
+      border-radius:18px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      font-weight:bold;
+      transition:.25s ease;
+    }
+
+    .quick-card:hover {
+      transform:translateY(-4px);
+      border-color:var(--gold);
+    }
+
+    .section-title {
+      color:var(--green-dark);
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .section-divider {
+      margin:3rem 0 2rem;
+      padding-top:2rem;
+      border-top:3px solid var(--gold);
+    }
+
+    .resource-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:1.4rem;
+      margin-bottom:3rem;
+    }
+
+    .resource-card {
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:1.8rem;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .resource-card::before {
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:6px;
+      background:var(--gold);
+    }
+
+    .tag {
+      display:inline-block;
+      background:#f1e3bf;
+      color:var(--green-dark);
+      font-size:.75rem;
+      font-weight:bold;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      padding:.35rem .65rem;
+      border-radius:999px;
+      margin-bottom:.9rem;
+    }
+
+    .resource-card h2 {
+      color:var(--green-dark);
+      font-size:1.55rem;
+      margin-bottom:.6rem;
+    }
+
+    .resource-card p {
+      color:var(--muted);
+      margin-bottom:.9rem;
+    }
+
+    .resource-card ul {
+      margin-left:1.2rem;
+      color:var(--muted);
+      margin-bottom:1rem;
+    }
+
+    .resource-card li {
+      margin-bottom:.35rem;
+    }
+
+    .button-link {
+      display:inline-block;
+      background:var(--burgundy);
+      color:white;
+      text-decoration:none;
+      padding:.85rem 1.2rem;
+      border-radius:999px;
+      font-weight:bold;
+      transition:.25s ease;
+      margin-top:.4rem;
+      margin-right:.5rem;
+    }
+
+    .button-link:hover {
+      background:var(--burgundy-dark);
+      transform:translateY(-2px);
+    }
+
+    .rights-box {
+      background:var(--green-dark);
+      color:var(--white);
+      border-left:8px solid var(--gold);
+      border-radius:24px;
+      padding:2rem;
+      box-shadow:var(--shadow);
+      margin-bottom:3rem;
+    }
+
+    .rights-box h2 {
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .rights-box p,
+    .rights-box ul {
+      color:#f3ead7;
+    }
+
+    .rights-box ul {
+      margin-left:1.2rem;
+      margin-top:1rem;
+    }
+
+    .rights-box li {
+      margin-bottom:.45rem;
+    }
+
+    .site-links h2 {
+      color:var(--green-dark);
+      text-align:center;
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .link-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+    }
+
+    .nav-card {
+      background:var(--white);
+      color:var(--green-dark);
+      text-decoration:none;
+      text-align:center;
+      padding:1.2rem;
+      border-radius:18px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      font-weight:bold;
+      transition:.25s ease;
+    }
+
+    .nav-card:hover {
+      transform:translateY(-4px);
+      border-color:var(--gold);
+    }
+
+    footer {
+      background:var(--green-dark);
+      color:var(--white);
+      text-align:center;
+      padding:2rem 1rem;
+      margin-top:3rem;
+      border-top:6px solid var(--gold);
+    }
+
+    @media(max-width:850px) {
+      .quick-grid,
+      .resource-grid,
+      .link-grid {
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    Rural Saskatchewan Help Navigator
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="back-link">← Back to Home</a>
+
+      <h1>Housing & Employment</h1>
+
+      <p class="subtitle">
+        Stable housing and fair employment are important foundations for personal
+        well-being and access to justice.
+      </p>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="notice-box">
+      <p>
+        This page provides public information about housing, tenant, employment,
+        and basic rights resources in Saskatchewan. It is a starting point only
+        and does not replace legal advice, government information, or professional
+        support.
+      </p>
+    </section>
+
+    <section class="quick-grid">
+      <a href="#housing" class="quick-card">Housing problems</a>
+      <a href="#tenant" class="quick-card">Tenant rights</a>
+      <a href="#housing-benefit" class="quick-card">Rent support</a>
+      <a href="#employment" class="quick-card">Employment standards</a>
+      <a href="#job-search" class="quick-card">Finding work</a>
+      <a href="#complaints" class="quick-card">Workplace complaints</a>
+    </section>
+
+    <h2 class="section-title" id="housing">Housing and tenant information</h2>
+
+    <section class="resource-grid">
+
+      <div class="resource-card" id="tenant">
+        <span class="tag">Tenant Rights</span>
+        <h2>Office of Residential Tenancies</h2>
+        <p>
+          The Office of Residential Tenancies provides information about rental
+          rules and landlord-tenant disputes in Saskatchewan.
+        </p>
+
+        <ul>
+          <li>Security deposits</li>
+          <li>Evictions</li>
+          <li>Rent increases</li>
+          <li>Repairs and rental disputes</li>
+        </ul>
+
+        <a href="https://www.saskatchewan.ca/business/housing-development-construction-and-property-management/landlords-and-rental-properties" class="button-link" target="_blank">Visit ORT</a>
+      </div>
+
+      <div class="resource-card">
+        <span class="tag">Housing Programs</span>
+        <h2>Saskatchewan Housing Corporation</h2>
+        <p>
+          Saskatchewan Housing Corporation provides government-funded housing
+          programs and rental benefit information.
+        </p>
+
+        <ul>
+          <li>Affordable housing programs</li>
+          <li>Rental benefits</li>
+          <li>Housing program eligibility</li>
+          <li><strong>Call:</strong> 1-800-667-7567</li>
+        </ul>
+
+        <a href="https://www.saskatchewan.ca/residents/housing-and-renting" class="button-link" target="_blank">View Housing Programs</a>
+      </div>
+
+      <div class="resource-card" id="housing-benefit">
+        <span class="tag">Rent Support</span>
+        <h2>Saskatchewan Housing Benefit</h2>
+        <p>
+          The Saskatchewan Housing Benefit may help lower rental costs. The benefit
+          is tied to income rather than location.
+        </p>
+
+        <ul>
+          <li>Monthly rental support</li>
+          <li>Based on eligibility and income</li>
+          <li><strong>Call:</strong> 1-844-787-4177</li>
+        </ul>
+
+        <a href="https://www.saskatchewan.ca/residents/housing-and-renting/renting-and-leasing/saskatchewan-housing-benefit" class="button-link" target="_blank">View Housing Benefit</a>
+      </div>
+
+      <div class="resource-card">
+        <span class="tag">Yorkton Support</span>
+        <h2>SIGN Housing Support</h2>
+        <p>
+          SIGN Housing Support may help Yorkton residents with local housing support,
+          emergency shelter placement, and hard-to-house advocacy resources.
+        </p>
+
+        <ul>
+          <li>Local Yorkton housing support</li>
+          <li>Emergency shelter placement information</li>
+          <li>Housing advocacy resources</li>
+        </ul>
+
+        <a href="https://signyorkton.ca/" class="button-link" target="_blank">Visit SIGN Yorkton</a>
+      </div>
+
+    </section>
+
+    <div class="section-divider">
+      <h2 class="section-title" id="employment">Employment and workplace rights</h2>
+    </div>
+
+    <section class="resource-grid">
+
+      <div class="resource-card">
+        <span class="tag">Employment Rights</span>
+        <h2>Saskatchewan Employment Standards</h2>
+        <p>
+          Employment Standards provides information about workplace rights and
+          employment rules in Saskatchewan.
+        </p>
+
+        <ul>
+          <li>Minimum wage</li>
+          <li>Overtime pay</li>
+          <li>Statutory holidays</li>
+          <li>Termination notice</li>
+          <li>Hours of work and breaks</li>
+        </ul>
+
+        <a href="https://www.saskatchewan.ca/business/employment-standards" class="button-link" target="_blank">View Employment Standards</a>
+      </div>
+
+      <div class="resource-card" id="job-search">
+        <span class="tag">Job Search</span>
+        <h2>SaskJobs</h2>
+        <p>
+          SaskJobs is the Government of Saskatchewan’s job search portal for open
+          employment listings across the province.
+        </p>
+
+        <ul>
+          <li>Search job listings by location</li>
+          <li>Look for work in Yorkton and surrounding rural communities</li>
+        </ul>
+
+        <a href="https://www.saskjobs.ca/" class="button-link" target="_blank">Search SaskJobs</a>
+      </div>
+
+      <div class="resource-card">
+        <span class="tag">Career Support</span>
+        <h2>Yorkton Career Services</h2>
+        <p>
+          Yorkton residents may be able to access in-person job training, resume
+          support, or career assistance through provincial career services.
+        </p>
+
+        <ul>
+          <li>Resume support</li>
+          <li>Job training information</li>
+          <li>Remote career support may be available</li>
+          <li><strong>Call:</strong> 1-833-613-0485</li>
+          <li><strong>Email:</strong> careerservices@gov.sk.ca</li>
+        </ul>
+      </div>
+
+      <div class="resource-card">
+        <span class="tag">Rural Jobs</span>
+        <h2>Canada Job Bank</h2>
+        <p>
+          The federal Canada Job Bank can be used to search for work, including
+          rural employment opportunities and smaller community job postings.
+        </p>
+
+        <ul>
+          <li>Search jobs across Canada</li>
+          <li>Use filters for location and rural opportunities</li>
+        </ul>
+
+        <a href="https://www.jobbank.gc.ca/" class="button-link" target="_blank">Visit Job Bank</a>
+      </div>
+
+      <div class="resource-card" id="complaints">
+        <span class="tag">Workplace Complaint</span>
+        <h2>Employment Standards Inquiry Line</h2>
+        <p>
+          If an employer may have violated your rights, Employment Standards can
+          explain rights related to hours, breaks, and final pay cheques.
+        </p>
+
+        <ul>
+          <li><strong>Call:</strong> 1-800-667-1783</li>
+          <li><strong>Email:</strong> employmentstandards@gov.sk.ca</li>
+          <li>May guide you through the complaint process</li>
+        </ul>
+
+        <a href="https://www.saskatchewan.ca/business/employment-standards/complaints-investigations-enforcement-and-fines/file-an-employment-standards-complaint/make-a-formal-employment-standards-complaint" class="button-link" target="_blank">File a Complaint</a>
+      </div>
+
+    </section>
+
+    <section class="rights-box">
+      <h2>Know your rights</h2>
+
+      <p>
+        In Saskatchewan, workers and job seekers have legal protections. If you
+        are unsure whether your rights have been violated, Employment Standards
+        may be able to explain the complaint process.
+      </p>
+
+      <ul>
+        <li>Employers and recruitment agencies cannot charge job seekers money to find work.</li>
+        <li>Employers pay recruiters; job seekers should not be charged recruitment fees.</li>
+        <li>Workers have rights related to wages, breaks, hours of work, and final pay.</li>
+        <li>Some complaints can be handled remotely through the online complaint process.</li>
+      </ul>
+    </section>
+
+    <section class="rights-box">
+      <h2>Housing and employment often overlap.</h2>
+
+      <p>
+        Losing work, unsafe housing, rent stress, mental health, immigration, and
+        legal problems can affect each other. It is okay to look at more than one
+        section of this website.
+      </p>
+
+      <ul>
+        <li>Losing a job may affect housing, finances, and mental health.</li>
+        <li>Housing insecurity may make it harder to work or attend appointments.</li>
+        <li>Newcomers may face employment, housing, language, and legal barriers at the same time.</li>
+      </ul>
+
+      <a href="overlap.html" class="button-link">Go to When Problems Overlap</a>
+      <a href="start-here.html" class="button-link">Return to Start Here</a>
+    </section>
+
+    <section class="notice-box">
+      <p>
+        Need the full printable version? Download the complete Public Information Guide.
+      </p>
+
+      <a href="guide.pdf" download class="button-link">Download the Guide</a>
+    </section>
+
+    <section class="site-links">
+      <h2>Continue exploring the site</h2>
+
+      <div class="link-grid">
+        <a href="start-here.html" class="nav-card">Start Here</a>
+        <a href="find-help.html" class="nav-card">Find Help by Situation</a>
+        <a href="legal-help.html" class="nav-card">Legal Help</a>
+        <a href="mental-health.html" class="nav-card">Mental Health & Addictions</a>
+        <a href="immigration-support.html" class="nav-card">Immigration Support</a>
+        <a href="overlap.html" class="nav-card">When Problems Overlap</a>
+        <a href="barriers.html" class="nav-card">Barriers to Legal Help in Rural Areas</a>
+        <a href="about.html" class="nav-card">About the Project</a>
+        <a href="index.html" class="nav-card">Home</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Rural Saskatchewan Help Navigator</p>
+  </footer>
+
+</body>
+</html>

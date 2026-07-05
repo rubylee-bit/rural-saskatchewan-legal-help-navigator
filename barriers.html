@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Barriers to Legal Help | Rural Saskatchewan Help Navigator</title>
+
+  <style>
+    :root {
+      --green-dark:#163524;
+      --green:#24533a;
+      --gold:#b88a2b;
+      --cream:#f7f1e3;
+      --white:#fffaf0;
+      --burgundy:#8b1e2d;
+      --burgundy-dark:#661420;
+      --text:#1f1f1f;
+      --muted:#625d52;
+      --border:rgba(36,83,58,.18);
+      --shadow:0 18px 45px rgba(22,53,36,.12);
+    }
+
+    * {
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body {
+      font-family:Georgia, "Times New Roman", serif;
+      background:var(--cream);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    .top-bar {
+      background:var(--green-dark);
+      color:var(--white);
+      text-align:center;
+      padding:.75rem 1rem;
+      font-size:.9rem;
+    }
+
+    header {
+      background:linear-gradient(135deg,var(--green-dark),var(--green));
+      color:var(--white);
+      padding:4rem 1.5rem;
+      border-bottom:7px solid var(--gold);
+    }
+
+    .header-inner,
+    main {
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    .back-link {
+      color:var(--gold);
+      text-decoration:none;
+      font-weight:bold;
+      display:inline-block;
+      margin-bottom:1.5rem;
+    }
+
+    h1 {
+      font-size:clamp(2.5rem,5vw,4.7rem);
+      line-height:1.1;
+      margin-bottom:1rem;
+    }
+
+    .subtitle {
+      max-width:820px;
+      color:#f3ead7;
+      font-size:1.15rem;
+    }
+
+    main {
+      padding:4rem 1.5rem;
+    }
+
+    .intro-box {
+      background:var(--white);
+      border-left:7px solid var(--gold);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:2rem;
+      margin-bottom:2.5rem;
+      font-size:1.1rem;
+    }
+
+    .barrier-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:1.4rem;
+      margin-bottom:3rem;
+    }
+
+    .barrier-card {
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:1.8rem;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .barrier-card::before {
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:6px;
+      background:var(--gold);
+    }
+
+    .barrier-card h2 {
+      color:var(--green-dark);
+      font-size:1.55rem;
+      margin-bottom:.7rem;
+    }
+
+    .barrier-card p {
+      color:var(--muted);
+    }
+
+    .solution-box {
+      background:var(--green-dark);
+      color:var(--white);
+      border-left:8px solid var(--gold);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:2rem;
+      margin-bottom:3rem;
+    }
+
+    .solution-box h2 {
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .solution-box p,
+    .solution-box ul {
+      color:#f3ead7;
+    }
+
+    .solution-box ul {
+      margin-left:1.2rem;
+      margin-top:1rem;
+    }
+
+    .solution-box li {
+      margin-bottom:.45rem;
+    }
+
+    .center-message {
+      text-align:center;
+      color:var(--green-dark);
+      font-size:clamp(1.8rem,4vw,3rem);
+      line-height:1.2;
+      max-width:850px;
+      margin:3.5rem auto;
+      font-weight:bold;
+    }
+
+    .button-link {
+      display:inline-block;
+      background:var(--burgundy);
+      color:white;
+      text-decoration:none;
+      padding:.85rem 1.2rem;
+      border-radius:999px;
+      font-weight:bold;
+      transition:.25s ease;
+      margin-top:.4rem;
+      margin-right:.5rem;
+    }
+
+    .button-link:hover {
+      background:var(--burgundy-dark);
+      transform:translateY(-2px);
+    }
+
+    .notice-box {
+      background:var(--white);
+      border-left:7px solid var(--gold);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:1.8rem;
+      margin-bottom:2.5rem;
+    }
+
+    .site-links h2 {
+      color:var(--green-dark);
+      text-align:center;
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .link-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+    }
+
+    .nav-card {
+      background:var(--white);
+      color:var(--green-dark);
+      text-decoration:none;
+      text-align:center;
+      padding:1.2rem;
+      border-radius:18px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      font-weight:bold;
+      transition:.25s ease;
+    }
+
+    .nav-card:hover {
+      transform:translateY(-4px);
+      border-color:var(--gold);
+    }
+
+    footer {
+      background:var(--green-dark);
+      color:var(--white);
+      text-align:center;
+      padding:2rem 1rem;
+      margin-top:3rem;
+      border-top:6px solid var(--gold);
+    }
+
+    @media(max-width:850px) {
+      .barrier-grid,
+      .link-grid {
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    Rural Saskatchewan Help Navigator
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="back-link">← Back to Home</a>
+
+      <h1>Barriers to Legal Help in Rural Areas</h1>
+
+      <p class="subtitle">
+        Accessing legal help is not always straightforward. In rural Saskatchewan,
+        the difficulty is often not just the legal issue itself, but knowing where
+        to begin and how to reach the right support.
+      </p>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="intro-box">
+      <p>
+        For many people living in rural communities, finding legal and community
+        support can involve challenges that go beyond the legal problem itself.
+        Services may be far away, information may be spread across different
+        organizations, and it may not be clear whether a problem is legal,
+        financial, health-related, or connected to another kind of support.
+      </p>
+    </section>
+
+    <section class="barrier-grid">
+
+      <div class="barrier-card">
+        <h2>Distance</h2>
+        <p>
+          Rural residents may need to travel long distances to meet with lawyers,
+          attend court, or access community services. Limited transportation,
+          winter weather, and the cost of travel can make these trips even harder.
+        </p>
+      </div>
+
+      <div class="barrier-card">
+        <h2>Cost</h2>
+        <p>
+          Legal representation can be expensive. Even when legal assistance is
+          available, people may not know whether they qualify for Legal Aid,
+          free clinics, or other lower-cost options.
+        </p>
+      </div>
+
+      <div class="barrier-card">
+        <h2>Knowing where to start</h2>
+        <p>
+          Many people do not know whether their problem is legal, financial,
+          medical, or social-service related. As a result, they may delay seeking
+          help or contact the wrong organization first.
+        </p>
+      </div>
+
+      <div class="barrier-card">
+        <h2>Internet and technology</h2>
+        <p>
+          Many services are now online, but reliable internet access and comfort
+          with digital tools can vary across rural communities. This can make it
+          harder to complete forms, find resources, or attend virtual appointments.
+        </p>
+      </div>
+
+      <div class="barrier-card">
+        <h2>Availability of services</h2>
+        <p>
+          Smaller communities may have fewer nearby lawyers, specialized supports,
+          government offices, or public services than larger urban centres.
+        </p>
+      </div>
+
+      <div class="barrier-card">
+        <h2>Overlapping issues</h2>
+        <p>
+          Housing, employment, family, financial, immigration, and mental health
+          concerns often occur together. This can make it difficult to identify
+          the best place to begin.
+        </p>
+      </div>
+
+    </section>
+
+    <section class="solution-box">
+      <h2>How this website tries to help</h2>
+
+      <p>
+        The Rural Saskatchewan Help Navigator was created to reduce some of these
+        barriers by providing a single starting point for public legal information
+        and community resources.
+      </p>
+
+      <ul>
+        <li>Bringing legal and community resources together in one place.</li>
+        <li>Organizing information by real-life situations, not only by institution.</li>
+        <li>Linking users to official organizations and public resources.</li>
+        <li>Highlighting that legal, health, housing, employment, and immigration issues may overlap.</li>
+        <li>Providing a downloadable guide for people who prefer a printable version.</li>
+      </ul>
+
+      <a href="start-here.html" class="button-link">Start Here</a>
+      <a href="find-help.html" class="button-link">Find Help by Situation</a>
+    </section>
+
+    <p class="center-message">
+      Everyone deserves to understand where they can turn for help, regardless
+      of where they live.
+    </p>
+
+    <section class="notice-box">
+      <p>
+        Interested in learning more about the broader access-to-justice issue?
+        A separate report or research page can be added later for readers who want
+        more detail.
+      </p>
+
+      <a href="guide.pdf" download class="button-link">Download the Public Information Guide</a>
+    </section>
+
+    <section class="site-links">
+      <h2>Continue exploring the site</h2>
+
+      <div class="link-grid">
+        <a href="start-here.html" class="nav-card">Start Here</a>
+        <a href="find-help.html" class="nav-card">Find Help by Situation</a>
+        <a href="legal-help.html" class="nav-card">Legal Help</a>
+        <a href="mental-health.html" class="nav-card">Mental Health & Addictions</a>
+        <a href="housing-employment.html" class="nav-card">Housing & Employment</a>
+        <a href="immigration-support.html" class="nav-card">Immigration Support</a>
+        <a href="overlap.html" class="nav-card">When Problems Overlap</a>
+        <a href="about.html" class="nav-card">About the Project</a>
+        <a href="index.html" class="nav-card">Home</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Rural Saskatchewan Help Navigator</p>
+  </footer>
+
+</body>
+</html>

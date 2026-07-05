@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Start Here | Rural Saskatchewan Help Navigator</title>
+
+  <style>
+    :root {
+      --green-dark:#163524;
+      --green:#24533a;
+      --gold:#b88a2b;
+      --cream:#f7f1e3;
+      --white:#fffaf0;
+      --burgundy:#8b1e2d;
+      --burgundy-dark:#661420;
+      --text:#1f1f1f;
+      --muted:#625d52;
+      --border:rgba(36,83,58,.18);
+      --shadow:0 18px 45px rgba(22,53,36,.12);
+      --danger:#9f1d2d;
+      --danger-light:#fff1f1;
+    }
+
+    * {
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background:var(--cream);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    .top-bar {
+      background:var(--green-dark);
+      color:var(--white);
+      text-align:center;
+      padding:.75rem 1rem;
+      font-size:.9rem;
+    }
+
+    header {
+      background:linear-gradient(135deg,var(--green-dark),var(--green));
+      color:var(--white);
+      padding:4rem 1.5rem;
+      border-bottom:7px solid var(--gold);
+    }
+
+    .header-inner,
+    main {
+      max-width:1050px;
+      margin:0 auto;
+    }
+
+    .back-link {
+      color:var(--gold);
+      text-decoration:none;
+      font-weight:bold;
+      display:inline-block;
+      margin-bottom:1.5rem;
+    }
+
+    h1 {
+      font-size:clamp(2.6rem,5vw,4.7rem);
+      line-height:1.1;
+      margin-bottom:1rem;
+    }
+
+    .subtitle {
+      max-width:760px;
+      color:#f3ead7;
+      font-size:1.15rem;
+    }
+
+    main {
+      padding:4rem 1.5rem;
+    }
+
+    .intro-box {
+      background:var(--white);
+      padding:2rem;
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      border:1px solid var(--border);
+      margin-bottom:2rem;
+      font-size:1.1rem;
+    }
+
+    .quiz-box {
+      background:var(--white);
+      padding:2rem;
+      border-radius:26px;
+      box-shadow:var(--shadow);
+      border:1px solid var(--border);
+      margin-bottom:2rem;
+    }
+	.quiz-box.urgent {
+    	background: #fff0f0;
+    	border: 3px solid #8b1e2d;
+    	border-left: 12px solid #8b1e2d;
+	}
+
+	.quiz-box.urgent .question {
+    	color: #8b1e2d;
+	}
+
+    .step-label {
+      color:var(--gold);
+      font-weight:bold;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      font-size:.8rem;
+      margin-bottom:.5rem;
+    }
+
+    .question {
+      color:var(--green-dark);
+      font-size:1.7rem;
+      margin-bottom:1rem;
+    }
+
+    .quiz-buttons {
+      display:flex;
+      flex-wrap:wrap;
+      gap:1rem;
+      margin-top:1.2rem;
+    }
+
+    button,
+    .link-button {
+      font-family:inherit;
+      border:none;
+      cursor:pointer;
+      text-decoration:none;
+      background:var(--burgundy);
+      color:white;
+      padding:.9rem 1.3rem;
+      border-radius:999px;
+      font-weight:bold;
+      font-size:1rem;
+      transition:.25s ease;
+      display:inline-block;
+    }
+
+    button:hover,
+    .link-button:hover {
+      background:var(--burgundy-dark);
+      transform:translateY(-2px);
+    }
+
+    .secondary-button {
+      background:var(--green);
+    }
+
+    .secondary-button:hover {
+      background:var(--green-dark);
+    }
+
+    .result {
+      display:none;
+      margin-top:1.5rem;
+      padding:1.5rem;
+      border-radius:18px;
+      background:#fdf7e8;
+      border-left:6px solid var(--gold);
+    }
+
+    .result.danger {
+      background:var(--danger-light);
+      border-left:7px solid var(--danger);
+    }
+
+    .result h3 {
+      color:var(--green-dark);
+      margin-bottom:.5rem;
+      font-size:1.4rem;
+    }
+
+    .result.danger h3 {
+      color:var(--danger);
+    }
+
+    .result.show {
+      display:block;
+    }
+
+    .hidden {
+      display:none;
+    }
+
+    .situation-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:1rem;
+      margin-top:1.3rem;
+    }
+
+    .situation-card {
+      background:var(--cream);
+      color:var(--green-dark);
+      border:1px solid var(--border);
+      text-decoration:none;
+      border-radius:18px;
+      padding:1.2rem;
+      font-weight:bold;
+      transition:.25s ease;
+    }
+
+    .situation-card:hover {
+      border-color:var(--gold);
+      transform:translateY(-3px);
+    }
+
+    .site-links {
+      margin-top:3rem;
+    }
+
+    .site-links h2 {
+      text-align:center;
+      color:var(--green-dark);
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .link-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+    }
+
+    .nav-card {
+      background:var(--white);
+      color:var(--green-dark);
+      text-decoration:none;
+      text-align:center;
+      padding:1.2rem;
+      border-radius:18px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      font-weight:bold;
+      transition:.25s ease;
+    }
+
+    .nav-card:hover {
+      transform:translateY(-4px);
+      border-color:var(--gold);
+    }
+
+    footer {
+      background:var(--green-dark);
+      color:var(--white);
+      text-align:center;
+      padding:2rem 1rem;
+      margin-top:3rem;
+      border-top:6px solid var(--gold);
+    }
+
+    @media(max-width:800px) {
+      .situation-grid,
+      .link-grid {
+        grid-template-columns:1fr;
+      }
+    }
+
+.result.show {
+    animation: fadeIn 0.35s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    Rural Saskatchewan Help Navigator
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="back-link">← Back to Home</a>
+      <h1>Start Here</h1>
+      <p class="subtitle">
+        Answer a few simple questions to find a safer and clearer place to begin.
+      </p>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="intro-box">
+      <p>
+        Many legal problems may involve several aspects, such as housing,
+        employment, mental health, addictions, family, immigration, or finances.
+        This page is designed to help you find a starting point and guide you in
+        the right direction.
+      </p>
+    </section>
+
+    <section class="quiz-box urgent" id="step1">
+      <p class="step-label">Step 1 of 5</p>
+      <h2 class="question">Is anyone in immediate danger?</h2>
+
+      <div class="quiz-buttons">
+        <button onclick="showResult('dangerResult')">Yes</button>
+        <button class="secondary-button" onclick="nextStep('step1','step2')">No</button>
+      </div>
+
+      <div id="dangerResult" class="result danger">
+        <h3>Immediate danger</h3>
+        <p>Call 911 or go to the nearest emergency department.</p>
+      </div>
+    </section>
+
+    <section class="quiz-box urgent hidden" id="step2">
+      <p class="step-label">Step 2 of 5</p>
+      <h2 class="question">Is this an emotional crisis or suicide-related concern?</h2>
+
+      <div class="quiz-buttons">
+        <button onclick="showResult('crisisResult')">Yes</button>
+        <button class="secondary-button" onclick="nextStep('step2','step3')">No</button>
+      </div>
+
+      <div id="crisisResult" class="result danger">
+        <h3>Emotional crisis or suicide-related concern</h3>
+        <p>Call or text 988, or call 811.</p>
+      </div>
+    </section>
+
+    <section class="quiz-box hidden" id="step3">
+      <p class="step-label">Step 3 of 5</p>
+      <h2 class="question">Do you need legal advice about your specific situation?</h2>
+
+      <div class="quiz-buttons">
+        <a href="legal-help.html" class="link-button">Yes, go to Legal Help</a>
+        <button class="secondary-button" onclick="nextStep('step3','step4')">No / Not sure</button>
+      </div>
+    </section>
+
+    <section class="quiz-box hidden" id="step4">
+      <p class="step-label">Step 4 of 5</p>
+      <h2 class="question">Do you need general legal information?</h2>
+
+      <div class="quiz-buttons">
+        <a href="legal-help.html" class="link-button">Yes, view legal information resources</a>
+        <button class="secondary-button" onclick="nextStep('step4','step5')">No / Continue</button>
+      </div>
+    </section>
+
+    <section class="quiz-box hidden" id="step5">
+      <p class="step-label">Step 5 of 5</p>
+      <h2 class="question">Which area best describes your situation?</h2>
+
+      <div class="situation-grid">
+        <a href="housing-employment.html" class="situation-card">Housing</a>
+        <a href="housing-employment.html" class="situation-card">Employment or work</a>
+        <a href="immigration-support.html" class="situation-card">Immigration or newcomer support</a>
+        <a href="mental-health.html" class="situation-card">Mental health or addictions</a>
+        <a href="find-help.html" class="situation-card">Family safety or overlapping issues</a>
+        <a href="find-help.html" class="situation-card">I’m not sure</a>
+      </div>
+
+      <div class="result show">
+        <h3>Still unsure?</h3>
+        <p>
+          That is okay. If you are not sure which category fits, start with the
+          Find Help by Situation page or the public information guide.
+        </p>
+        <a href="find-help.html" class="link-button">Go to Find Help by Situation</a>
+        <a href="Public Information Guide.pdf" class="link-button">Download the Guide</a>
+      </div>
+    </section>
+
+    <section class="site-links">
+      <h2>Continue exploring the site</h2>
+
+      <div class="link-grid">
+        <a href="find-help.html" class="nav-card">Find Help by Situation</a>
+        <a href="Public Information Guide.pdf" download class="nav-card">Download the Guide</a>
+        <a href="legal-help.html" class="nav-card">Legal Help</a>
+        <a href="mental-health.html" class="nav-card">Mental Health & Addictions</a>
+        <a href="housing-employment.html" class="nav-card">Housing & Employment</a>
+        <a href="immigration-support.html" class="nav-card">Immigration Support</a>
+        <a href="overlap.html" class="nav-card">When Problems Overlap</a>
+        <a href="barriers.html" class="nav-card">Barriers to Legal Help in Rural Areas</a>
+        <a href="about.html" class="nav-card">About the Project</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Rural Saskatchewan Help Navigator</p>
+  </footer>
+
+  <script>
+    function nextStep(currentStep, nextStep) {
+      document.getElementById(nextStep).classList.remove("hidden");
+      document.getElementById(nextStep).scrollIntoView({ behavior: "smooth" });
+    }
+
+    function showResult(resultId) {
+      document.getElementById(resultId).classList.add("show");
+    }
+  </script>
+
+</body>
+</html>

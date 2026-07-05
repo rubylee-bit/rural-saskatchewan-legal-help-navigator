@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Immigration Support | Rural Saskatchewan Help Navigator</title>
+
+  <style>
+    :root {
+      --green-dark:#163524;
+      --green:#24533a;
+      --gold:#b88a2b;
+      --cream:#f7f1e3;
+      --white:#fffaf0;
+      --burgundy:#8b1e2d;
+      --burgundy-dark:#661420;
+      --text:#1f1f1f;
+      --muted:#625d52;
+      --border:rgba(36,83,58,.18);
+      --shadow:0 18px 45px rgba(22,53,36,.12);
+    }
+
+    * {
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body {
+      font-family:Georgia, "Times New Roman", serif;
+      background:var(--cream);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    .top-bar {
+      background:var(--green-dark);
+      color:var(--white);
+      text-align:center;
+      padding:.75rem 1rem;
+      font-size:.9rem;
+    }
+
+    header {
+      background:linear-gradient(135deg,var(--green-dark),var(--green));
+      color:var(--white);
+      padding:4rem 1.5rem;
+      border-bottom:7px solid var(--gold);
+    }
+
+    .header-inner,
+    main {
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    .back-link {
+      color:var(--gold);
+      text-decoration:none;
+      font-weight:bold;
+      display:inline-block;
+      margin-bottom:1.5rem;
+    }
+
+    h1 {
+      font-size:clamp(2.5rem,5vw,4.7rem);
+      line-height:1.1;
+      margin-bottom:1rem;
+    }
+
+    .subtitle {
+      max-width:820px;
+      color:#f3ead7;
+      font-size:1.15rem;
+    }
+
+    main {
+      padding:4rem 1.5rem;
+    }
+
+    .notice-box {
+      background:var(--white);
+      border-left:7px solid var(--gold);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:1.8rem;
+      margin-bottom:2.5rem;
+    }
+
+    .quick-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+      margin-bottom:3rem;
+    }
+
+    .quick-card {
+      background:var(--white);
+      color:var(--green-dark);
+      text-decoration:none;
+      text-align:center;
+      padding:1.2rem;
+      border-radius:18px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      font-weight:bold;
+      transition:.25s ease;
+    }
+
+    .quick-card:hover {
+      transform:translateY(-4px);
+      border-color:var(--gold);
+    }
+
+    .section-title {
+      color:var(--green-dark);
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .resource-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:1.4rem;
+      margin-bottom:3rem;
+    }
+
+    .resource-card {
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:1.8rem;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .resource-card::before {
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:6px;
+      background:var(--gold);
+    }
+
+    .tag {
+      display:inline-block;
+      background:#f1e3bf;
+      color:var(--green-dark);
+      font-size:.75rem;
+      font-weight:bold;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      padding:.35rem .65rem;
+      border-radius:999px;
+      margin-bottom:.9rem;
+    }
+
+    .resource-card h2 {
+      color:var(--green-dark);
+      font-size:1.55rem;
+      margin-bottom:.6rem;
+    }
+
+    .resource-card p {
+      color:var(--muted);
+      margin-bottom:.9rem;
+    }
+
+    .resource-card ul {
+      margin-left:1.2rem;
+      color:var(--muted);
+      margin-bottom:1rem;
+    }
+
+    .resource-card li {
+      margin-bottom:.35rem;
+    }
+
+    .button-link {
+      display:inline-block;
+      background:var(--burgundy);
+      color:white;
+      text-decoration:none;
+      padding:.85rem 1.2rem;
+      border-radius:999px;
+      font-weight:bold;
+      transition:.25s ease;
+      margin-top:.4rem;
+      margin-right:.5rem;
+    }
+
+    .button-link:hover {
+      background:var(--burgundy-dark);
+      transform:translateY(-2px);
+    }
+
+    .rights-box {
+      background:var(--green-dark);
+      color:var(--white);
+      border-left:8px solid var(--gold);
+      border-radius:24px;
+      padding:2rem;
+      box-shadow:var(--shadow);
+      margin-bottom:3rem;
+    }
+
+    .rights-box h2 {
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .rights-box p,
+    .rights-box ul {
+      color:#f3ead7;
+    }
+
+    .rights-box ul {
+      margin-left:1.2rem;
+      margin-top:1rem;
+    }
+
+    .rights-box li {
+      margin-bottom:.45rem;
+    }
+
+    .site-links h2 {
+      color:var(--green-dark);
+      text-align:center;
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .link-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+    }
+
+    .nav-card {
+      background:var(--white);
+      color:var(--green-dark);
+      text-decoration:none;
+      text-align:center;
+      padding:1.2rem;
+      border-radius:18px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      font-weight:bold;
+      transition:.25s ease;
+    }
+
+    .nav-card:hover {
+      transform:translateY(-4px);
+      border-color:var(--gold);
+    }
+
+    footer {
+      background:var(--green-dark);
+      color:var(--white);
+      text-align:center;
+      padding:2rem 1rem;
+      margin-top:3rem;
+      border-top:6px solid var(--gold);
+    }
+
+    @media(max-width:850px) {
+      .quick-grid,
+      .resource-grid,
+      .link-grid {
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    Rural Saskatchewan Help Navigator
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="back-link">← Back to Home</a>
+
+      <h1>Immigration Support</h1>
+
+      <p class="subtitle">
+        Find starting points for federal immigration questions, Saskatchewan nominee
+        program inquiries, newcomer services, language support, and rural settlement help.
+      </p>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="notice-box">
+      <p>
+        This page provides public information about immigration and newcomer supports.
+        It does not provide immigration legal advice and does not replace official
+        information from IRCC, the Government of Saskatchewan, or qualified immigration
+        professionals.
+      </p>
+    </section>
+
+    <section class="quick-grid">
+      <a href="#ircc" class="quick-card">Federal immigration questions</a>
+      <a href="#sinp" class="quick-card">SINP questions</a>
+      <a href="#newcomer" class="quick-card">Yorkton newcomer support</a>
+      <a href="#rural" class="quick-card">Rural support</a>
+      <a href="#language" class="quick-card">Language support</a>
+      <a href="#fraud" class="quick-card">Avoid immigration fraud</a>
+    </section>
+
+    <h2 class="section-title">Immigration and government contacts</h2>
+
+    <section class="resource-grid">
+
+      <div class="resource-card" id="ircc">
+        <span class="tag">Federal Immigration</span>
+        <h2>IRCC Client Support Centre</h2>
+        <p>
+          Use IRCC for general federal immigration questions, application status,
+          technical account issues, and official immigration webform inquiries.
+        </p>
+
+        <ul>
+          <li><strong>Call:</strong> 1-888-242-2100</li>
+          <li>Have your Unique Client Identifier, or UCI, ready if you have one.</li>
+          <li>Calling around opening time may help, but lines can be busy.</li>
+          <li>IRCC agents cannot speed up processing or give legal immigration advice.</li>
+        </ul>
+
+        <a href="https://www.canada.ca/en/immigration-refugees-citizenship/corporate/contact-ircc.html" class="button-link" target="_blank">Contact IRCC</a>
+        <a href="https://secure.cic.gc.ca/enquiries-renseignements/canada-case-cas-eng.aspx" class="button-link" target="_blank">Use IRCC Webform</a>
+      </div>
+
+      <div class="resource-card" id="sinp">
+        <span class="tag">Provincial Immigration</span>
+        <h2>Government of Saskatchewan Immigration / SINP</h2>
+        <p>
+          For Saskatchewan Immigrant Nominee Program questions, contact the provincial
+          government rather than federal IRCC agents.
+        </p>
+
+        <ul>
+          <li><strong>Call:</strong> 1-833-613-0485</li>
+          <li><strong>Email:</strong> immigration@gov.sk.ca</li>
+          <li><strong>Employer technical issues:</strong> employerservices@gov.sk.ca</li>
+        </ul>
+
+        <a href="https://www.saskatchewan.ca/residents/moving-to-saskatchewan/immigrating-to-saskatchewan" class="button-link" target="_blank">Visit Saskatchewan Immigration</a>
+      </div>
+
+    </section>
+
+    <h2 class="section-title">Yorkton and rural newcomer support</h2>
+
+    <section class="resource-grid">
+
+      <div class="resource-card" id="newcomer">
+        <span class="tag">Yorkton Newcomer Support</span>
+        <h2>East Central Newcomer Welcome Centre</h2>
+        <p>
+          The East Central Newcomer Welcome Centre provides newcomer and settlement
+          support in Yorkton and the surrounding region.
+        </p>
+
+        <ul>
+          <li><strong>Phone:</strong> (306) 783-2777</li>
+          <li><strong>Email:</strong> ecnwcinfo@ecnwc.ca</li>
+          <li>May assist with settlement documents, housing orientation, translation, and regional support.</li>
+          <li>Serves a large area around Yorkton, including smaller surrounding communities.</li>
+        </ul>
+
+        <a href="https://eastcentralnewcomercentre.ca/" class="button-link" target="_blank">Visit Newcomer Centre</a>
+      </div>
+
+      <div class="resource-card" id="rural">
+        <span class="tag">Rural Access</span>
+        <h2>Remote and Satellite Support</h2>
+        <p>
+          Newcomers in surrounding rural communities may be able to access support
+          without travelling to Yorkton.
+        </p>
+
+        <ul>
+          <li>Remote support may be available by phone, Zoom, or email.</li>
+          <li>Settlement staff may travel to smaller towns and municipal buildings.</li>
+          <li>Communities such as Melville, Esterhazy, Canora, Kamsack, and Langenburg may be served remotely.</li>
+        </ul>
+
+        <a href="https://eastcentralnewcomercentre.ca/" class="button-link" target="_blank">Ask About Rural Support</a>
+      </div>
+
+      <div class="resource-card">
+        <span class="tag">Schools</span>
+        <h2>Settlement Workers in Schools</h2>
+        <p>
+          Settlement Workers in Schools, or SWIS, can help immigrant families connect
+          with school systems and local supports.
+        </p>
+
+        <ul>
+          <li>Support may be available directly through rural school divisions.</li>
+          <li>Helpful for families with children moving into smaller rural communities.</li>
+          <li>Can assist families with integration into local school networks.</li>
+        </ul>
+
+        <a href="https://eastcentralnewcomercentre.ca/" class="button-link" target="_blank">Learn About SWIS</a>
+      </div>
+
+    </section>
+
+    <h2 class="section-title">Language and document support</h2>
+
+    <section class="resource-grid">
+
+      <div class="resource-card" id="language">
+        <span class="tag">English Classes</span>
+        <h2>LINC and ESL Support</h2>
+        <p>
+          Language support may help newcomers improve English for work, citizenship,
+          permanent residency, and everyday life.
+        </p>
+
+        <ul>
+          <li>Language Instruction for Newcomers to Canada, or LINC</li>
+          <li>ESL support through local providers such as Suncrest College</li>
+          <li>An English level assessment may be required before beginning classes.</li>
+        </ul>
+
+        <a href="https://www.suncrestcollege.ca/" class="button-link" target="_blank">Visit Suncrest College</a>
+      </div>
+
+      <div class="resource-card">
+        <span class="tag">Translation</span>
+        <h2>Document Translation and Interpretation</h2>
+        <p>
+          Translation and interpretation support may be useful when dealing with
+          official applications, health care, legal matters, or other daily tasks.
+        </p>
+
+        <ul>
+          <li>Official document translation may be available through the Newcomer Centre.</li>
+          <li>Interpretation support may be available through the Newcomer Centre.</li>
+          <li>English conversation circles and community matching may also be offered.</li>
+        </ul>
+
+        <a href="https://eastcentralnewcomercentre.ca/" class="button-link" target="_blank">Contact the Newcomer Centre</a>
+      </div>
+
+    </section>
+
+    <section class="rights-box" id="fraud">
+      <h2>Watch for immigration fraud</h2>
+
+      <p>
+        Immigration scams can target people who are stressed, waiting for applications,
+        or unsure where to get help. Use official government websites and be cautious
+        if something feels suspicious.
+      </p>
+
+      <ul>
+        <li>Legitimate fees are not paid by cryptocurrency, gift cards, prepaid credit cards, Western Union, or personal bank transfer.</li>
+        <li>Official IRCC communications should come from government email addresses ending in <strong>.gc.ca</strong>.</li>
+        <li>Be cautious of messages that pressure you to act quickly or create panic.</li>
+        <li>IRCC will not call unexpectedly to sell immigration packages or special processing deals.</li>
+      </ul>
+    </section>
+
+    <section class="rights-box">
+      <h2>Immigration issues may overlap with other problems.</h2>
+
+      <p>
+        Newcomers may need support with employment, housing, language, school systems,
+        mental health, or legal information at the same time. It is okay to use more
+        than one section of this website.
+      </p>
+
+      <a href="housing-employment.html" class="button-link">Housing & Employment</a>
+      <a href="mental-health.html" class="button-link">Mental Health & Addictions</a>
+      <a href="find-help.html" class="button-link">Find Help by Situation</a>
+    </section>
+
+    <section class="notice-box">
+      <p>
+        Need the full printable version? Download the complete Public Information Guide.
+      </p>
+
+      <a href="guide.pdf" download class="button-link">Download the Guide</a>
+    </section>
+
+    <section class="site-links">
+      <h2>Continue exploring the site</h2>
+
+      <div class="link-grid">
+        <a href="start-here.html" class="nav-card">Start Here</a>
+        <a href="find-help.html" class="nav-card">Find Help by Situation</a>
+        <a href="legal-help.html" class="nav-card">Legal Help</a>
+        <a href="mental-health.html" class="nav-card">Mental Health & Addictions</a>
+        <a href="housing-employment.html" class="nav-card">Housing & Employment</a>
+        <a href="overlap.html" class="nav-card">When Problems Overlap</a>
+        <a href="barriers.html" class="nav-card">Barriers to Legal Help in Rural Areas</a>
+        <a href="about.html" class="nav-card">About the Project</a>
+        <a href="index.html" class="nav-card">Home</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Rural Saskatchewan Help Navigator</p>
+  </footer>
+
+</body>
+</html>

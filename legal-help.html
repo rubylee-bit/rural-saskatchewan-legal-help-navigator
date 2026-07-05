@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Legal Help | Rural Saskatchewan Help Navigator</title>
+
+  <style>
+    :root {
+      --green-dark:#163524;
+      --green:#24533a;
+      --gold:#b88a2b;
+      --cream:#f7f1e3;
+      --white:#fffaf0;
+      --burgundy:#8b1e2d;
+      --burgundy-dark:#661420;
+      --text:#1f1f1f;
+      --muted:#625d52;
+      --border:rgba(36,83,58,.18);
+      --shadow:0 18px 45px rgba(22,53,36,.12);
+    }
+
+    * {
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body {
+      font-family:Georgia, "Times New Roman", serif;
+      background:var(--cream);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    .top-bar {
+      background:var(--green-dark);
+      color:var(--white);
+      text-align:center;
+      padding:.75rem 1rem;
+      font-size:.9rem;
+    }
+
+    header {
+      background:linear-gradient(135deg,var(--green-dark),var(--green));
+      color:var(--white);
+      padding:4rem 1.5rem;
+      border-bottom:7px solid var(--gold);
+    }
+
+    .header-inner,
+    main {
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    .back-link {
+      color:var(--gold);
+      text-decoration:none;
+      font-weight:bold;
+      display:inline-block;
+      margin-bottom:1.5rem;
+    }
+
+    h1 {
+      font-size:clamp(2.5rem,5vw,4.7rem);
+      line-height:1.1;
+      margin-bottom:1rem;
+    }
+
+    .subtitle {
+      max-width:800px;
+      color:#f3ead7;
+      font-size:1.15rem;
+    }
+
+    main {
+      padding:4rem 1.5rem;
+    }
+
+    .notice-box {
+      background:var(--white);
+      border-left:7px solid var(--gold);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:1.8rem;
+      margin-bottom:2.5rem;
+    }
+
+    .notice-box strong {
+      color:var(--green-dark);
+    }
+
+    .quick-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+      margin-bottom:3rem;
+    }
+
+    .quick-card {
+      background:var(--white);
+      color:var(--green-dark);
+      text-decoration:none;
+      text-align:center;
+      padding:1.2rem;
+      border-radius:18px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      font-weight:bold;
+      transition:.25s ease;
+    }
+
+    .quick-card:hover {
+      transform:translateY(-4px);
+      border-color:var(--gold);
+    }
+
+    .section-title {
+      color:var(--green-dark);
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .resource-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:1.4rem;
+      margin-bottom:3rem;
+    }
+
+    .resource-card {
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:1.8rem;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .resource-card::before {
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:6px;
+      background:var(--gold);
+    }
+
+    .tag {
+      display:inline-block;
+      background:#f1e3bf;
+      color:var(--green-dark);
+      font-size:.75rem;
+      font-weight:bold;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      padding:.35rem .65rem;
+      border-radius:999px;
+      margin-bottom:.9rem;
+    }
+
+    .resource-card h2 {
+      color:var(--green-dark);
+      font-size:1.55rem;
+      margin-bottom:.6rem;
+    }
+
+    .resource-card p {
+      color:var(--muted);
+      margin-bottom:.9rem;
+    }
+
+    .resource-card ul {
+      margin-left:1.2rem;
+      color:var(--muted);
+      margin-bottom:1rem;
+    }
+
+    .resource-card li {
+      margin-bottom:.35rem;
+    }
+
+    .button-link {
+      display:inline-block;
+      background:var(--burgundy);
+      color:white;
+      text-decoration:none;
+      padding:.85rem 1.2rem;
+      border-radius:999px;
+      font-weight:bold;
+      transition:.25s ease;
+      margin-top:.4rem;
+      margin-right:.5rem;
+    }
+
+    .button-link:hover {
+      background:var(--burgundy-dark);
+      transform:translateY(-2px);
+    }
+
+    .questions-box {
+      background:var(--green-dark);
+      color:var(--white);
+      border-left:8px solid var(--gold);
+      border-radius:24px;
+      padding:2rem;
+      box-shadow:var(--shadow);
+      margin-bottom:3rem;
+    }
+
+    .questions-box h2 {
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .questions-box ul {
+      margin-left:1.2rem;
+      color:#f3ead7;
+    }
+
+    .questions-box li {
+      margin-bottom:.45rem;
+    }
+
+    .site-links h2 {
+      color:var(--green-dark);
+      text-align:center;
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .link-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+    }
+
+    .nav-card {
+      background:var(--white);
+      color:var(--green-dark);
+      text-decoration:none;
+      text-align:center;
+      padding:1.2rem;
+      border-radius:18px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      font-weight:bold;
+      transition:.25s ease;
+    }
+
+    .nav-card:hover {
+      transform:translateY(-4px);
+      border-color:var(--gold);
+    }
+
+    footer {
+      background:var(--green-dark);
+      color:var(--white);
+      text-align:center;
+      padding:2rem 1rem;
+      margin-top:3rem;
+      border-top:6px solid var(--gold);
+    }
+
+    @media(max-width:850px) {
+      .quick-grid,
+      .resource-grid,
+      .link-grid {
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    Rural Saskatchewan Help Navigator
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="back-link">← Back to Home</a>
+
+      <h1>Legal Help</h1>
+
+      <p class="subtitle">
+        Find starting points for legal advice, legal information, lawyer directories,
+        court resources, and low-cost legal support in Saskatchewan.
+      </p>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="notice-box">
+      <p>
+        <strong>This page does not provide legal advice.</strong>
+        It provides public legal information and links to organizations that may help
+        you find legal support. If you need advice about your specific situation,
+        contact Legal Aid Saskatchewan, a licensed lawyer, or another qualified legal
+        professional.
+      </p>
+    </section>
+
+    <section class="quick-grid">
+      <a href="#legal-aid" class="quick-card">I need legal advice</a>
+      <a href="#lawyer-directory" class="quick-card">I need to find a lawyer</a>
+      <a href="#legal-information" class="quick-card">I need legal information</a>
+      <a href="#court-resources" class="quick-card">I have court questions</a>
+      <a href="#family-law" class="quick-card">I need family law help</a>
+      <a href="#questions" class="quick-card">Questions to ask first</a>
+    </section>
+
+    <h2 class="section-title">Legal advice and low-cost legal help</h2>
+
+    <section class="resource-grid">
+
+      <div class="resource-card" id="legal-aid">
+        <span class="tag">Legal Advice</span>
+        <h2>Legal Aid Saskatchewan — Yorkton</h2>
+        <p>
+          Legal Aid Saskatchewan may provide free or low-cost criminal and family
+          legal services to financially eligible residents who cannot afford a
+          private lawyer.
+        </p>
+
+        <ul>
+          <li><strong>Address:</strong> 120 Smith St E, Yorkton, SK S3N 3V3</li>
+          <li><strong>Phone:</strong> (306) 786-1440</li>
+          <li><strong>May assist with:</strong> criminal, family, child welfare, domestic abuse, and other eligible matters</li>
+        </ul>
+
+        <a href="https://legalaid.sk.ca/" class="button-link" target="_blank">Visit Legal Aid Saskatchewan</a>
+      </div>
+
+      <div class="resource-card">
+        <span class="tag">Free Legal Clinic</span>
+        <h2>Pro Bono Law Saskatchewan</h2>
+        <p>
+          If you earn too much for Legal Aid but still cannot afford private lawyer
+          fees, Pro Bono Law Saskatchewan may be another option to explore.
+        </p>
+
+        <ul>
+          <li>Free legal clinics with volunteer lawyers</li>
+          <li>Up to one hour of free legal advice</li>
+          <li>Phone appointments may be available for rural residents</li>
+          <li><strong>Call:</strong> 1-855-833-7257</li>
+          <li><strong>Typical wait time:</strong> 3–6 weeks</li>
+        </ul>
+
+        <a href="https://pblsask.ca/" class="button-link" target="_blank">Visit Pro Bono Law Saskatchewan</a>
+      </div>
+
+    </section>
+
+    <h2 class="section-title">Finding a lawyer or legal professional</h2>
+
+    <section class="resource-grid">
+
+      <div class="resource-card" id="lawyer-directory">
+        <span class="tag">Lawyer Directory</span>
+        <h2>Law Society of Saskatchewan Directory</h2>
+        <p>
+          The Law Society of Saskatchewan directory helps members of the public
+          search for licensed legal professionals in Saskatchewan.
+        </p>
+
+        <ul>
+          <li>Search by location</li>
+          <li>Search by area of law</li>
+          <li>Check whether a legal professional is licensed</li>
+          <li>May include language, service model, or payment information</li>
+        </ul>
+
+        <p>
+          This website does not recommend or endorse specific lawyers or law firms.
+        </p>
+
+        <a href="https://www.lawsociety.sk.ca/" class="button-link" target="_blank">Search the Directory</a>
+      </div>
+
+      <div class="resource-card" id="legal-information">
+        <span class="tag">Legal Information</span>
+        <h2>Public Legal Education Association of Saskatchewan</h2>
+        <p>
+          PLEA provides plain-language public legal information about legal rights,
+          obligations, and court procedures.
+        </p>
+
+        <ul>
+          <li>Useful if you need general legal information</li>
+          <li>Not a substitute for legal advice</li>
+          <li>May help you understand common legal topics before contacting a lawyer</li>
+        </ul>
+
+        <a href="https://www.plea.org/" class="button-link" target="_blank">Visit PLEA</a>
+      </div>
+
+    </section>
+
+    <h2 class="section-title">Court and government legal resources</h2>
+
+    <section class="resource-grid">
+
+      <div class="resource-card" id="court-resources">
+        <span class="tag">Courts</span>
+        <h2>Courts of Saskatchewan</h2>
+        <p>
+          Saskatchewan’s court system includes the Provincial Court, the Court of
+          King’s Bench, and the Court of Appeal. The official court website provides
+          information about court locations, processes, and court-related resources.
+        </p>
+
+        <ul>
+          <li><strong>Provincial Court:</strong> criminal, youth, traffic, municipal bylaw, and small claims matters</li>
+          <li><strong>Court of King’s Bench:</strong> serious criminal, civil, and family law trials</li>
+          <li><strong>Court of Appeal:</strong> reviews decisions from lower courts</li>
+        </ul>
+
+        <a href="https://sasklawcourts.ca/" class="button-link" target="_blank">Visit Courts of Saskatchewan</a>
+      </div>
+
+      <div class="resource-card">
+        <span class="tag">Yorkton Court</span>
+        <h2>Provincial Court of Saskatchewan — Yorkton</h2>
+        <p>
+          The Provincial Court handles many criminal, youth, traffic, municipal
+          bylaw, and small claims matters.
+        </p>
+
+        <ul>
+          <li><strong>Address:</strong> 120 2nd Avenue North, Yorkton</li>
+          <li><strong>Phone:</strong> (306) 786-1400</li>
+        </ul>
+
+        <a href="https://sasklawcourts.ca/" class="button-link" target="_blank">View Court Information</a>
+      </div>
+
+    </section>
+
+    <h2 class="section-title">Family law and safety-related legal information</h2>
+
+    <section class="resource-grid">
+
+      <div class="resource-card" id="family-law">
+        <span class="tag">Family Law</span>
+        <h2>Family Law Information Centre</h2>
+        <p>
+          Family law in Saskatchewan may involve divorce, separation, child or
+          spousal support, parenting, property division, and related issues.
+        </p>
+
+        <ul>
+          <li>Free family law resources, forms, and legal coaching may be available</li>
+          <li><strong>Call:</strong> 1-888-218-2822</li>
+          <li>Early Family Dispute Resolution may be required before going to court</li>
+        </ul>
+
+        <a href="https://familylaw.plea.org/" class="button-link" target="_blank">Visit Family Law Saskatchewan</a>
+      </div>
+
+      <div class="resource-card">
+        <span class="tag">Child Support</span>
+        <h2>Saskatchewan Child Support Service</h2>
+        <p>
+          The Saskatchewan Child Support Service provides an administrative,
+          out-of-court process to calculate or adjust child support payments.
+        </p>
+
+        <ul>
+          <li><strong>Phone:</strong> (306) 787-5042</li>
+          <li><strong>Toll-free:</strong> 1-833-825-1445</li>
+          <li><strong>Email:</strong> childsupportservice@gov.sk.ca</li>
+        </ul>
+
+        <a href="https://www.saskatchewan.ca/residents/family-and-social-support/child-support/child-support-recalculation-service" class="button-link" target="_blank">View Child Support Information</a>
+      </div>
+
+    </section>
+
+    <section class="questions-box" id="questions">
+      <h2>Questions to consider before contacting a lawyer</h2>
+
+      <ul>
+        <li>What kind of legal issue do I need help with?</li>
+        <li>Do I need legal advice, or am I only looking for general legal information?</li>
+        <li>Can I afford a private lawyer, or should I look into Legal Aid Saskatchewan or other alternatives?</li>
+        <li>Have I checked that the lawyer or legal professional is licensed through an official directory?</li>
+        <li>Do I need help in a specific language?</li>
+        <li>Do they offer phone or virtual consultations?</li>
+        <li>Is there a consultation fee?</li>
+        <li>What documents should I prepare before speaking with them?</li>
+      </ul>
+    </section>
+
+    <section class="notice-box">
+      <p>
+        Need the full printable version? Download the complete Public Information Guide.
+      </p>
+
+      <a href="guide.pdf" download class="button-link">Download the Guide</a>
+    </section>
+
+    <section class="site-links">
+      <h2>Continue exploring the site</h2>
+
+      <div class="link-grid">
+        <a href="start-here.html" class="nav-card">Start Here</a>
+        <a href="find-help.html" class="nav-card">Find Help by Situation</a>
+        <a href="mental-health.html" class="nav-card">Mental Health & Addictions</a>
+        <a href="housing-employment.html" class="nav-card">Housing & Employment</a>
+        <a href="immigration-support.html" class="nav-card">Immigration Support</a>
+        <a href="overlap.html" class="nav-card">When Problems Overlap</a>
+        <a href="barriers.html" class="nav-card">Barriers to Legal Help in Rural Areas</a>
+        <a href="about.html" class="nav-card">About the Project</a>
+        <a href="index.html" class="nav-card">Home</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Rural Saskatchewan Help Navigator</p>
+  </footer>
+
+</body>
+</html>

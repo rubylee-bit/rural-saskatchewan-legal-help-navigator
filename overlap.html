@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>When Problems Overlap | Rural Saskatchewan Help Navigator</title>
+
+  <style>
+    :root {
+      --green-dark:#163524;
+      --green:#24533a;
+      --gold:#b88a2b;
+      --cream:#f7f1e3;
+      --white:#fffaf0;
+      --burgundy:#8b1e2d;
+      --burgundy-dark:#661420;
+      --text:#1f1f1f;
+      --muted:#625d52;
+      --border:rgba(36,83,58,.18);
+      --shadow:0 18px 45px rgba(22,53,36,.12);
+    }
+
+    * {
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body {
+      font-family:Georgia, "Times New Roman", serif;
+      background:var(--cream);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    .top-bar {
+      background:var(--green-dark);
+      color:var(--white);
+      text-align:center;
+      padding:.75rem 1rem;
+      font-size:.9rem;
+    }
+
+    header {
+      background:linear-gradient(135deg,var(--green-dark),var(--green));
+      color:var(--white);
+      padding:4rem 1.5rem;
+      border-bottom:7px solid var(--gold);
+    }
+
+    .header-inner,
+    main {
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    .back-link {
+      color:var(--gold);
+      text-decoration:none;
+      font-weight:bold;
+      display:inline-block;
+      margin-bottom:1.5rem;
+    }
+
+    h1 {
+      font-size:clamp(2.5rem,5vw,4.7rem);
+      line-height:1.1;
+      margin-bottom:1rem;
+    }
+
+    .subtitle {
+      max-width:820px;
+      color:#f3ead7;
+      font-size:1.15rem;
+    }
+
+    main {
+      padding:4rem 1.5rem;
+    }
+
+    .intro-box,
+    .content-box {
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:2rem;
+      margin-bottom:2.5rem;
+    }
+
+    .intro-box {
+      border-left:7px solid var(--gold);
+      font-size:1.12rem;
+    }
+
+    .content-box h2 {
+      color:var(--green-dark);
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .content-box p {
+      color:var(--muted);
+      margin-bottom:1rem;
+    }
+
+    .flow-box {
+      background:var(--green-dark);
+      color:var(--white);
+      border-left:8px solid var(--gold);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:2rem;
+      margin-bottom:3rem;
+    }
+
+    .flow-box h2 {
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .flow {
+      display:grid;
+      gap:.8rem;
+      margin-top:1.2rem;
+    }
+
+    .flow-step {
+      background:rgba(255,250,240,.1);
+      border:1px solid rgba(255,250,240,.25);
+      border-radius:16px;
+      padding:1rem;
+      text-align:center;
+      color:#f3ead7;
+      font-weight:bold;
+    }
+
+    .arrow {
+      text-align:center;
+      color:var(--gold);
+      font-size:1.5rem;
+      font-weight:bold;
+    }
+
+    .overlap-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:1.4rem;
+      margin-bottom:3rem;
+    }
+
+    .overlap-card {
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:1.8rem;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .overlap-card::before {
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:6px;
+      background:var(--gold);
+    }
+
+    .overlap-card h2 {
+      color:var(--green-dark);
+      font-size:1.55rem;
+      margin-bottom:.7rem;
+    }
+
+    .overlap-card ul {
+      margin-left:1.2rem;
+      color:var(--muted);
+      margin-bottom:1.1rem;
+    }
+
+    .overlap-card li {
+      margin-bottom:.35rem;
+    }
+
+    .button-link {
+      display:inline-block;
+      background:var(--burgundy);
+      color:white;
+      text-decoration:none;
+      padding:.85rem 1.2rem;
+      border-radius:999px;
+      font-weight:bold;
+      transition:.25s ease;
+      margin-top:.4rem;
+      margin-right:.5rem;
+    }
+
+    .button-link:hover {
+      background:var(--burgundy-dark);
+      transform:translateY(-2px);
+    }
+
+    .begin-list {
+      counter-reset:item;
+      list-style:none;
+      display:grid;
+      gap:1rem;
+      margin-top:1.2rem;
+    }
+
+    .begin-list li {
+      background:var(--cream);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:1rem;
+      color:var(--muted);
+    }
+
+    .begin-list li strong {
+      color:var(--green-dark);
+    }
+
+    table {
+      width:100%;
+      border-collapse:collapse;
+      background:var(--white);
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      margin-bottom:3rem;
+    }
+
+    th {
+      background:var(--green-dark);
+      color:var(--white);
+      text-align:left;
+      padding:1rem;
+    }
+
+    td {
+      padding:1rem;
+      border-bottom:1px solid var(--border);
+      color:var(--muted);
+      vertical-align:top;
+    }
+
+    tr:last-child td {
+      border-bottom:none;
+    }
+
+    .center-message {
+      text-align:center;
+      color:var(--green-dark);
+      font-size:clamp(1.8rem,4vw,3rem);
+      line-height:1.2;
+      max-width:850px;
+      margin:3.5rem auto;
+      font-weight:bold;
+    }
+
+    .final-box {
+      background:var(--green-dark);
+      color:var(--white);
+      border-left:8px solid var(--gold);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:2rem;
+      margin-bottom:3rem;
+    }
+
+    .final-box h2 {
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .final-box p {
+      color:#f3ead7;
+      margin-bottom:1rem;
+    }
+
+    .site-links h2 {
+      color:var(--green-dark);
+      text-align:center;
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .link-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+    }
+
+    .nav-card {
+      background:var(--white);
+      color:var(--green-dark);
+      text-decoration:none;
+      text-align:center;
+      padding:1.2rem;
+      border-radius:18px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      font-weight:bold;
+      transition:.25s ease;
+    }
+
+    .nav-card:hover {
+      transform:translateY(-4px);
+      border-color:var(--gold);
+    }
+
+    footer {
+      background:var(--green-dark);
+      color:var(--white);
+      text-align:center;
+      padding:2rem 1rem;
+      margin-top:3rem;
+      border-top:6px solid var(--gold);
+    }
+
+    @media(max-width:850px) {
+      .overlap-grid,
+      .link-grid {
+        grid-template-columns:1fr;
+      }
+
+      table,
+      thead,
+      tbody,
+      th,
+      td,
+      tr {
+        display:block;
+      }
+
+      th {
+        display:none;
+      }
+
+      td {
+        border-bottom:none;
+        padding:.8rem 1rem;
+      }
+
+      tr {
+        border-bottom:1px solid var(--border);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    Rural Saskatchewan Help Navigator
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="back-link">← Back to Home</a>
+
+      <h1>When Problems Overlap</h1>
+
+      <p class="subtitle">
+        Many challenges do not fit neatly into one category. This page helps explain
+        how different problems can connect and where you may wish to begin.
+      </p>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="intro-box">
+      <p>
+        Many challenges do not fit neatly into a single category. A housing issue may
+        also involve employment, finances, mental health, family relationships, or legal
+        questions. Likewise, losing a job can affect housing stability, emotional
+        well-being, and access to community services.
+      </p>
+
+      <p>
+        If more than one part of your life has been affected, you are not alone. It is
+        common for these issues to overlap, and it is okay to explore more than one
+        section of this website.
+      </p>
+    </section>
+
+    <section class="content-box">
+      <h2>What does “overlapping problems” mean?</h2>
+      <p>
+        Sometimes one event causes several other difficulties. For example, a job loss
+        may create financial stress, which may make it harder to pay rent, which may
+        then affect mental health or create legal questions.
+      </p>
+    </section>
+
+    <section class="flow-box">
+      <h2>One problem can lead to another.</h2>
+
+      <div class="flow">
+        <div class="flow-step">Loss of employment</div>
+        <div class="arrow">↓</div>
+        <div class="flow-step">Financial stress</div>
+        <div class="arrow">↓</div>
+        <div class="flow-step">Difficulty paying rent</div>
+        <div class="arrow">↓</div>
+        <div class="flow-step">Mental health concerns</div>
+        <div class="arrow">↓</div>
+        <div class="flow-step">Need for legal or community information</div>
+      </div>
+    </section>
+
+    <section class="overlap-grid">
+
+      <div class="overlap-card">
+        <h2>Losing a job</h2>
+        <p>May also affect:</p>
+        <ul>
+          <li>Housing</li>
+          <li>Mental health</li>
+          <li>Finances</li>
+          <li>Family relationships</li>
+        </ul>
+        <a href="housing-employment.html" class="button-link">Housing & Employment</a>
+        <a href="mental-health.html" class="button-link">Mental Health</a>
+      </div>
+
+      <div class="overlap-card">
+        <h2>Family violence</h2>
+        <p>May involve:</p>
+        <ul>
+          <li>Emergency safety</li>
+          <li>Housing</li>
+          <li>Legal advice</li>
+          <li>Counselling</li>
+          <li>Child protection</li>
+        </ul>
+        <a href="legal-help.html" class="button-link">Legal Help</a>
+        <a href="mental-health.html" class="button-link">Mental Health</a>
+      </div>
+
+      <div class="overlap-card">
+        <h2>Immigration concerns</h2>
+        <p>May involve:</p>
+        <ul>
+          <li>Employment</li>
+          <li>Housing</li>
+          <li>Language support</li>
+          <li>Legal information</li>
+          <li>Schools and settlement services</li>
+        </ul>
+        <a href="immigration-support.html" class="button-link">Immigration Support</a>
+        <a href="housing-employment.html" class="button-link">Housing & Employment</a>
+      </div>
+
+      <div class="overlap-card">
+        <h2>Mental health concerns</h2>
+        <p>May affect:</p>
+        <ul>
+          <li>Employment</li>
+          <li>Finances</li>
+          <li>Housing</li>
+          <li>Relationships</li>
+          <li>Ability to attend appointments</li>
+        </ul>
+        <a href="mental-health.html" class="button-link">Mental Health</a>
+        <a href="start-here.html" class="button-link">Start Here</a>
+      </div>
+
+      <div class="overlap-card">
+        <h2>Housing problems</h2>
+        <p>May also involve:</p>
+        <ul>
+          <li>Income</li>
+          <li>Employment</li>
+          <li>Legal disputes</li>
+          <li>Safety</li>
+          <li>Community supports</li>
+        </ul>
+        <a href="housing-employment.html" class="button-link">Housing Resources</a>
+        <a href="legal-help.html" class="button-link">Legal Help</a>
+      </div>
+
+    </section>
+
+    <section class="content-box">
+      <h2>Where should I begin?</h2>
+
+      <ol class="begin-list">
+        <li><strong>Begin with immediate safety.</strong> If someone is in immediate danger, call 911 or go to the nearest emergency department.</li>
+        <li><strong>Address urgent housing, health, or crisis needs.</strong> If the problem affects your safety, shelter, or health, start there first.</li>
+        <li><strong>Seek legal advice if legal rights may be involved.</strong> If your specific situation requires legal advice, contact Legal Aid Saskatchewan or a licensed lawyer.</li>
+        <li><strong>Use community supports when you need help navigating options.</strong> Community organizations may help you understand where to go next.</li>
+        <li><strong>Return to this website when another issue arises.</strong> You can use more than one section.</li>
+      </ol>
+    </section>
+
+    <h2 class="section-title">It is okay to use more than one resource.</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>If you are experiencing...</th>
+          <th>You may also wish to visit...</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Housing problems</td>
+          <td>Legal Help, Mental Health & Addictions, Housing & Employment</td>
+        </tr>
+
+        <tr>
+          <td>Employment problems</td>
+          <td>Housing & Employment, Legal Help, Mental Health & Addictions</td>
+        </tr>
+
+        <tr>
+          <td>Family violence or safety concerns</td>
+          <td>Legal Help, Mental Health & Addictions, Housing & Employment</td>
+        </tr>
+
+        <tr>
+          <td>Immigration concerns</td>
+          <td>Immigration Support, Housing & Employment, Legal Help</td>
+        </tr>
+
+        <tr>
+          <td>Financial difficulties</td>
+          <td>Housing & Employment, Legal Help, Community Supports</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="center-message">
+      You do not need to solve every problem at once. Finding the right starting
+      point is often the most important first step.
+    </p>
+
+    <section class="final-box">
+      <h2>There is no wrong place to start.</h2>
+
+      <p>
+        If you arrived on this page because you were unsure where your situation fits,
+        that is okay. Many people experience several challenges at the same time, and
+        seeking help from one service often leads to other supports.
+      </p>
+
+      <p>
+        You do not need to have everything figured out before reaching out. This
+        website is designed to help you take the next step, not every step at once.
+      </p>
+
+      <a href="start-here.html" class="button-link">Start Here</a>
+      <a href="find-help.html" class="button-link">Find Help by Situation</a>
+    </section>
+
+    <section class="intro-box">
+      <p>
+        Need the full printable version? Download the complete Public Information Guide.
+      </p>
+
+      <a href="guide.pdf" download class="button-link">Download the Guide</a>
+    </section>
+
+    <section class="site-links">
+      <h2>Continue exploring the site</h2>
+
+      <div class="link-grid">
+        <a href="start-here.html" class="nav-card">Start Here</a>
+        <a href="find-help.html" class="nav-card">Find Help by Situation</a>
+        <a href="legal-help.html" class="nav-card">Legal Help</a>
+        <a href="mental-health.html" class="nav-card">Mental Health & Addictions</a>
+        <a href="housing-employment.html" class="nav-card">Housing & Employment</a>
+        <a href="immigration-support.html" class="nav-card">Immigration Support</a>
+        <a href="barriers.html" class="nav-card">Barriers to Legal Help in Rural Areas</a>
+        <a href="about.html" class="nav-card">About the Project</a>
+        <a href="index.html" class="nav-card">Home</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Rural Saskatchewan Help Navigator</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rural Saskatchewan Help Navigator</title>
+
+  <style>
+    :root {
+      --green-dark: #163524;
+      --green: #24533a;
+      --gold: #b88a2b;
+      --cream: #f7f1e3;
+      --white: #fffaf0;
+      --burgundy: #8b1e2d;
+      --burgundy-dark: #661420;
+      --text: #1f1f1f;
+      --muted: #625d52;
+      --border: rgba(36, 83, 58, 0.18);
+      --shadow: 0 18px 45px rgba(22, 53, 36, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .top-bar {
+      background: var(--green-dark);
+      color: var(--white);
+      padding: 0.7rem 1.5rem;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .hero {
+  position: relative;
+  overflow: hidden;
+  color: var(--white);
+  padding: 5.5rem 1.5rem;
+  border-bottom: 7px solid var(--gold);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(22,53,36,.55), rgba(22,53,36,.55)),
+    url("SS00097-large.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: slowHeroMove 14s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes slowHeroMove {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.08);
+  }
+}
+
+    .hero-inner {
+      max-width: 1150px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    h1 {
+      max-width: 900px;
+      font-size: clamp(2.7rem, 6vw, 5.3rem);
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-subtitle {
+      max-width: 760px;
+      font-size: 1.25rem;
+      color: #f3ead7;
+      margin-bottom: 2rem;
+    }
+
+    button,
+    .card,
+    .secondary-card {
+      font-family: inherit;
+    }
+
+    .primary-button {
+      background: var(--burgundy);
+      color: white;
+      border: none;
+      padding: 1rem 1.45rem;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.25s ease;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    }
+
+    .primary-button:hover {
+      background: var(--burgundy-dark);
+      transform: translateY(-2px);
+    }
+
+    .message-box {
+      display: none;
+      max-width: 820px;
+      margin-top: 2rem;
+      background: rgba(255, 250, 240, 0.96);
+      color: var(--green-dark);
+      border-left: 6px solid var(--gold);
+      border-radius: 18px;
+      padding: 1.6rem;
+      font-size: 1.1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .message-box.show {
+      display: block;
+    }
+
+    main {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+      align-items: start;
+    }
+
+    .intro h2 {
+      color: var(--green-dark);
+      font-size: clamp(2rem, 4vw, 3.7rem);
+      line-height: 1.15;
+    }
+
+    .info-panel {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .info-panel p {
+      margin-bottom: 1.2rem;
+    }
+
+    .disclaimer {
+      color: var(--muted);
+      font-size: 0.95rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-heading h3 {
+      color: var(--green-dark);
+      font-size: 2rem;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .card {
+      background: var(--white);
+      color: var(--green-dark);
+      text-decoration: none;
+      min-height: 145px;
+      padding: 1.5rem;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: var(--gold);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold);
+    }
+
+    .card span {
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .card strong {
+      font-size: 1.25rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-top: 0.4rem;
+      font-size: 0.95rem;
+    }
+
+    .secondary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+    }
+
+    .secondary-card {
+      text-align: center;
+      text-decoration: none;
+      color: var(--green-dark);
+      border: 2px solid var(--gold);
+      border-radius: 18px;
+      padding: 1.1rem;
+      font-weight: bold;
+      transition: 0.25s ease;
+      background: transparent;
+    }
+
+    .secondary-card:hover {
+      background: var(--gold);
+      color: var(--green-dark);
+      transform: translateY(-3px);
+    }
+
+    footer {
+      background: var(--green-dark);
+      color: var(--white);
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+      border-top: 6px solid var(--gold);
+    }
+
+    @media (max-width: 900px) {
+      .intro,
+      .cards,
+      .secondary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 4rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    A student-led public legal information project for Yorkton and rural Saskatchewan.
+  </div>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Legal help • Community support • Rural access</p>
+
+      <h1>Rural Saskatchewan Help Navigator</h1>
+
+      <p class="hero-subtitle">
+        A simple place to begin when you are unsure where to look for legal,
+        health, financial, housing, employment, newcomer, or community support.
+      </p>
+
+      <button class="primary-button" onclick="toggleMessage()">
+        A Message For You
+      </button>
+
+      <div id="messageBox" class="message-box">
+        <p>
+          Many people do not know whether their problem is legal, health-related,
+          financial, or social-service related. In rural areas in particular, it
+          can be difficult to find the right pertaining information or resources,
+          but there is nothing wrong with not knowing where to start.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="intro">
+      <div>
+        <h2>
+          Find a starting point for legal and community support in Yorkton and
+          rural Saskatchewan.
+        </h2>
+      </div>
+
+      <div class="info-panel">
+        <p>
+          This is a student-led public legal information page that seeks to help
+          residents across Saskatchewan, especially rural communities, locate the
+          kind of legal help that they may need, whether that be Legal Aid,
+          lawyer directories, mental health and addictions supports, crisis
+          resources, housing, employment, newcomer, and community services.
+        </p>
+
+        <p class="disclaimer">
+          This website does not give legal advice. It is a starting point to
+          help residents find resources they may need and is not a substitute
+          for professional legal, medical, financial, or social support.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-heading">
+        <h3>Choose a starting point</h3>
+        <p>Select the area that best matches what you are looking for.</p>
+      </div>
+
+      <div class="cards">
+        <a href="start-here.html" class="card">
+          <span>➜</span>
+          <strong>Start Here</strong>
+          <p>Not sure what kind of help you need? Begin with the basics.</p>
+        </a>
+
+        <a href="find-help.html" class="card">
+          <span>?</span>
+          <strong>Find Help by Situation</strong>
+          <p>Search by problem, not by complicated legal category.</p>
+        </a>
+
+        <a href="Public Information Guide.pdf" class="card">
+          <span>↓</span>
+          <strong>Download the Guide</strong>
+          <p>Access a printable guide for residents and service providers.</p>
+        </a>
+
+        <a href="legal-help.html" class="card">
+          <span>⚖</span>
+          <strong>Legal Help</strong>
+          <p>Find Legal Aid, lawyer directories, clinics, and legal information.</p>
+        </a>
+
+        <a href="mental-health.html" class="card">
+          <span>✚</span>
+          <strong>Mental Health & Addictions</strong>
+          <p>Find crisis, counselling, addictions, and wellness supports.</p>
+        </a>
+
+        <a href="housing-employment.html" class="card">
+          <span>⌂</span>
+          <strong>Housing & Employment</strong>
+          <p>Find supports for housing, income, work, and workplace issues.</p>
+        </a>
+
+        <a href="immigration-support.html" class="card">
+          <span>◎</span>
+          <strong>Immigration Support</strong>
+          <p>Find newcomer, settlement, immigration, and language resources.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="secondary-grid">
+      <a href="overlap.html" class="secondary-card">When Problems Overlap</a>
+      <a href="barriers.html" class="secondary-card">Barriers to Legal Help in Rural Areas</a>
+      <a href="about.html" class="secondary-card">About the Project</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Rural Saskatchewan Help Navigator</p>
+  </footer>
+
+  <script>
+    function toggleMessage() {
+      document.getElementById("messageBox").classList.toggle("show");
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Mental Health & Addictions | Rural Saskatchewan Help Navigator</title>
+
+  <style>
+    :root {
+      --green-dark:#163524;
+      --green:#24533a;
+      --gold:#b88a2b;
+      --cream:#f7f1e3;
+      --white:#fffaf0;
+      --burgundy:#8b1e2d;
+      --burgundy-dark:#661420;
+      --text:#1f1f1f;
+      --muted:#625d52;
+      --border:rgba(36,83,58,.18);
+      --shadow:0 18px 45px rgba(22,53,36,.12);
+      --danger:#8b1e2d;
+      --danger-light:#fff0f0;
+    }
+
+    * {
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body {
+      font-family:Georgia, "Times New Roman", serif;
+      background:var(--cream);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    .top-bar {
+      background:var(--green-dark);
+      color:var(--white);
+      text-align:center;
+      padding:.75rem 1rem;
+      font-size:.9rem;
+    }
+
+    header {
+      background:linear-gradient(135deg,var(--green-dark),var(--green));
+      color:var(--white);
+      padding:4rem 1.5rem;
+      border-bottom:7px solid var(--gold);
+    }
+
+    .header-inner,
+    main {
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    .back-link {
+      color:var(--gold);
+      text-decoration:none;
+      font-weight:bold;
+      display:inline-block;
+      margin-bottom:1.5rem;
+    }
+
+    h1 {
+      font-size:clamp(2.5rem,5vw,4.7rem);
+      line-height:1.1;
+      margin-bottom:1rem;
+    }
+
+    .subtitle {
+      max-width:800px;
+      color:#f3ead7;
+      font-size:1.15rem;
+    }
+
+    main {
+      padding:4rem 1.5rem;
+    }
+
+    .notice-box {
+      background:var(--white);
+      border-left:7px solid var(--gold);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:1.8rem;
+      margin-bottom:2.5rem;
+    }
+
+    .urgent-box {
+      background:var(--danger-light);
+      border:2px solid #c84a5a;
+      border-left:10px solid var(--danger);
+      border-radius:22px;
+      box-shadow:0 10px 30px rgba(139,30,45,.16);
+      padding:1.8rem;
+      margin-bottom:2.5rem;
+    }
+
+    .urgent-box h2 {
+      color:var(--danger);
+      font-size:1.8rem;
+      margin-bottom:.8rem;
+    }
+
+    .urgent-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+      margin-top:1rem;
+    }
+
+    .urgent-card {
+      background:var(--white);
+      border:1px solid rgba(139,30,45,.25);
+      border-radius:18px;
+      padding:1.2rem;
+    }
+
+    .urgent-card strong {
+      color:var(--danger);
+      font-size:1.25rem;
+      display:block;
+      margin-bottom:.3rem;
+    }
+
+    .quick-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+      margin-bottom:3rem;
+    }
+
+    .quick-card {
+      background:var(--white);
+      color:var(--green-dark);
+      text-decoration:none;
+      text-align:center;
+      padding:1.2rem;
+      border-radius:18px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      font-weight:bold;
+      transition:.25s ease;
+    }
+
+    .quick-card:hover {
+      transform:translateY(-4px);
+      border-color:var(--gold);
+    }
+
+    .section-title {
+      color:var(--green-dark);
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .resource-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:1.4rem;
+      margin-bottom:3rem;
+    }
+
+    .resource-card {
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:1.8rem;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .resource-card::before {
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:6px;
+      background:var(--gold);
+    }
+
+    .tag {
+      display:inline-block;
+      background:#f1e3bf;
+      color:var(--green-dark);
+      font-size:.75rem;
+      font-weight:bold;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      padding:.35rem .65rem;
+      border-radius:999px;
+      margin-bottom:.9rem;
+    }
+
+    .resource-card h2 {
+      color:var(--green-dark);
+      font-size:1.55rem;
+      margin-bottom:.6rem;
+    }
+
+    .resource-card p {
+      color:var(--muted);
+      margin-bottom:.9rem;
+    }
+
+    .resource-card ul {
+      margin-left:1.2rem;
+      color:var(--muted);
+      margin-bottom:1rem;
+    }
+
+    .resource-card li {
+      margin-bottom:.35rem;
+    }
+
+    .button-link {
+      display:inline-block;
+      background:var(--burgundy);
+      color:white;
+      text-decoration:none;
+      padding:.85rem 1.2rem;
+      border-radius:999px;
+      font-weight:bold;
+      transition:.25s ease;
+      margin-top:.4rem;
+      margin-right:.5rem;
+    }
+
+    .button-link:hover {
+      background:var(--burgundy-dark);
+      transform:translateY(-2px);
+    }
+
+    .questions-box {
+      background:var(--green-dark);
+      color:var(--white);
+      border-left:8px solid var(--gold);
+      border-radius:24px;
+      padding:2rem;
+      box-shadow:var(--shadow);
+      margin-bottom:3rem;
+    }
+
+    .questions-box h2 {
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .questions-box p,
+    .questions-box ul {
+      color:#f3ead7;
+    }
+
+    .questions-box ul {
+      margin-left:1.2rem;
+      margin-top:1rem;
+    }
+
+    .site-links h2 {
+      color:var(--green-dark);
+      text-align:center;
+      font-size:2rem;
+      margin-bottom:1rem;
+    }
+
+    .link-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+    }
+
+    .nav-card {
+      background:var(--white);
+      color:var(--green-dark);
+      text-decoration:none;
+      text-align:center;
+      padding:1.2rem;
+      border-radius:18px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      font-weight:bold;
+      transition:.25s ease;
+    }
+
+    .nav-card:hover {
+      transform:translateY(-4px);
+      border-color:var(--gold);
+    }
+
+    footer {
+      background:var(--green-dark);
+      color:var(--white);
+      text-align:center;
+      padding:2rem 1rem;
+      margin-top:3rem;
+      border-top:6px solid var(--gold);
+    }
+
+    @media(max-width:850px) {
+      .quick-grid,
+      .resource-grid,
+      .link-grid,
+      .urgent-grid {
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    Rural Saskatchewan Help Navigator
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="back-link">← Back to Home</a>
+
+      <h1>Mental Health & Addictions</h1>
+
+      <p class="subtitle">
+        Find crisis lines, mental health services, addictions supports, youth supports,
+        Indigenous supports, and Yorkton-area resources.
+      </p>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="notice-box">
+      <p>
+        This page provides public information about mental health and addictions supports.
+        It is not medical advice, counselling, or a substitute for speaking with a qualified
+        professional. Resource availability, hours, and eligibility may change, so contact
+        each organization directly to confirm current information.
+      </p>
+    </section>
+
+    <section class="urgent-box" id="crisis">
+      <h2>If you need immediate help</h2>
+      <p>
+        If there is immediate danger or a medical emergency, call 911 or go to the nearest
+        emergency department.
+      </p>
+
+      <div class="urgent-grid">
+        <div class="urgent-card">
+          <strong>911</strong>
+          <p>Immediate danger or emergency.</p>
+        </div>
+
+        <div class="urgent-card">
+          <strong>988</strong>
+          <p>Call or text the 24/7 Suicide Crisis Helpline.</p>
+        </div>
+
+        <div class="urgent-card">
+          <strong>811</strong>
+          <p>Call HealthLine for 24/7 professional health advice.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-grid">
+      <a href="#crisis" class="quick-card">I need help now</a>
+      <a href="#youth" class="quick-card">Youth support</a>
+      <a href="#indigenous" class="quick-card">Indigenous support</a>
+      <a href="#yorkton" class="quick-card">Yorkton-area services</a>
+      <a href="#addictions" class="quick-card">Addictions support</a>
+      <a href="#community" class="quick-card">Community resources</a>
+    </section>
+
+    <h2 class="section-title">24/7 and crisis supports</h2>
+
+    <section class="resource-grid">
+
+      <div class="resource-card">
+        <span class="tag">Crisis Support</span>
+        <h2>Suicide Crisis Helpline</h2>
+        <p>
+          For suicide prevention and crisis support across Canada.
+        </p>
+
+        <ul>
+          <li><strong>Call or text:</strong> 988</li>
+          <li><strong>Available:</strong> 24/7</li>
+        </ul>
+
+        <a href="https://988.ca/" class="button-link" target="_blank">Visit 988</a>
+      </div>
+
+      <div class="resource-card" id="community">
+        <span class="tag">Health Advice</span>
+        <h2>HealthLine 811</h2>
+        <p>
+          HealthLine 811 provides 24/7 professional health advice and can help connect
+          people with appropriate health information.
+        </p>
+
+        <ul>
+          <li><strong>Call:</strong> 811</li>
+          <li><strong>Available:</strong> 24/7</li>
+        </ul>
+
+        <a href="https://www.saskatchewan.ca/residents/health/accessing-health-care-services/healthline" class="button-link" target="_blank">Visit HealthLine 811</a>
+      </div>
+
+      <div class="resource-card">
+        <span class="tag">Community Resources</span>
+        <h2>211 Saskatchewan</h2>
+        <p>
+          211 can help connect people with community, social, health, and government
+          services.
+        </p>
+
+        <ul>
+          <li><strong>Call:</strong> 211</li>
+          <li>Useful for finding community resources and local supports</li>
+        </ul>
+
+        <a href="https://sk.211.ca/" class="button-link" target="_blank">Visit 211 Saskatchewan</a>
+      </div>
+
+    </section>
+
+    <h2 class="section-title">Youth, Indigenous, and culturally relevant supports</h2>
+
+    <section class="resource-grid">
+
+      <div class="resource-card" id="youth">
+        <span class="tag">Youth Support</span>
+        <h2>Kids Help Phone</h2>
+        <p>
+          Kids Help Phone is a national 24/7 e-mental health service offering free,
+          confidential, and multilingual support for youth.
+        </p>
+
+        <ul>
+          <li><strong>Call:</strong> 1-800-668-6868</li>
+          <li><strong>Minors can text:</strong> 686868</li>
+          <li><strong>Adults can text:</strong> 741741</li>
+          <li>Phone, text, and live chat support may be available</li>
+        </ul>
+
+        <a href="https://kidshelpphone.ca/" class="button-link" target="_blank">Visit Kids Help Phone</a>
+      </div>
+
+      <div class="resource-card" id="indigenous">
+        <span class="tag">Indigenous Support</span>
+        <h2>Hope for Wellness Hotline</h2>
+        <p>
+          The Hope for Wellness Hotline provides 24/7 telephone support for Indigenous
+          people.
+        </p>
+
+        <ul>
+          <li><strong>Call:</strong> 1-855-242-3310</li>
+          <li><strong>Available:</strong> 24/7</li>
+          <li>Telephone support available in English, French, Cree, Ojibway, and Inuktitut</li>
+        </ul>
+
+        <a href="https://www.hopeforwellness.ca/" class="button-link" target="_blank">Visit Hope for Wellness</a>
+      </div>
+
+    </section>
+
+    <h2 class="section-title">Yorkton and regional supports</h2>
+
+    <section class="resource-grid">
+
+      <div class="resource-card" id="yorkton">
+        <span class="tag">Yorkton Area</span>
+        <h2>Mental Health and Addiction Services Intake</h2>
+        <p>
+          This is a central access point for Saskatchewan Health Authority mental health
+          and addictions services in the area.
+        </p>
+
+        <ul>
+          <li><strong>Call:</strong> 1-888-989-8444</li>
+          <li><strong>Yorkton:</strong> 1-306-786-0558</li>
+          <li>May provide access to therapy, detox management, individual counselling, and stabilization services</li>
+        </ul>
+
+        <a href="https://www.saskhealthauthority.ca/" class="button-link" target="_blank">Visit Saskatchewan Health Authority</a>
+      </div>
+
+      <div class="resource-card" id="addictions">
+        <span class="tag">Withdrawal Support</span>
+        <h2>Mobile Integrated Health Program</h2>
+        <p>
+          The Mobile Integrated Health Program provides mobile withdrawal and
+          substance-use stabilization support in Yorkton.
+        </p>
+
+        <ul>
+          <li><strong>Call:</strong> 1-306-620-6613</li>
+          <li><strong>Hours listed in guide:</strong> 9:00 AM to 9:00 PM, seven days a week</li>
+          <li>Confirm current hours and availability directly before relying on the service</li>
+        </ul>
+      </div>
+
+      <div class="resource-card">
+        <span class="tag">Addictions Treatment</span>
+        <h2>Saskatchewan Addictions Treatment Information</h2>
+        <p>
+          Saskatchewan provides information about alcohol and drug services, including
+          different types of addictions treatment and support.
+        </p>
+
+        <ul>
+          <li>Information about treatment options</li>
+          <li>Support for individuals and families affected by addictions</li>
+        </ul>
+
+        <a href="https://www.saskatchewan.ca/residents/health/accessing-health-care-services/mental-health-and-addictions-support-services/addictions-treatment" class="button-link" target="_blank">View Addictions Treatment Information</a>
+      </div>
+
+    </section>
+
+    <section class="questions-box">
+      <h2>Not sure what kind of support to look for?</h2>
+
+      <p>
+        Mental health, addictions, housing, employment, legal issues, family safety,
+        and financial stress can overlap. It is okay if you are not sure which category
+        fits.
+      </p>
+
+      <ul>
+        <li>If someone is in immediate danger, call 911.</li>
+        <li>If this is suicide-related or an emotional crisis, call or text 988.</li>
+        <li>If you need health advice, call 811.</li>
+        <li>If you need help finding community resources, call 211.</li>
+        <li>If your issue overlaps with legal, housing, employment, or immigration concerns, use the Start Here page.</li>
+      </ul>
+
+      <a href="start-here.html" class="button-link">Go to Start Here</a>
+      <a href="find-help.html" class="button-link">Find Help by Situation</a>
+    </section>
+
+    <section class="notice-box">
+      <p>
+        Need the full printable version? Download the complete Public Information Guide.
+      </p>
+
+      <a href="guide.pdf" download class="button-link">Download the Guide</a>
+    </section>
+
+    <section class="site-links">
+      <h2>Continue exploring the site</h2>
+
+      <div class="link-grid">
+        <a href="start-here.html" class="nav-card">Start Here</a>
+        <a href="find-help.html" class="nav-card">Find Help by Situation</a>
+        <a href="legal-help.html" class="nav-card">Legal Help</a>
+        <a href="housing-employment.html" class="nav-card">Housing & Employment</a>
+        <a href="immigration-support.html" class="nav-card">Immigration Support</a>
+        <a href="overlap.html" class="nav-card">When Problems Overlap</a>
+        <a href="barriers.html" class="nav-card">Barriers to Legal Help in Rural Areas</a>
+        <a href="about.html" class="nav-card">About the Project</a>
+        <a href="index.html" class="nav-card">Home</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Rural Saskatchewan Help Navigator</p>
+  </footer>
+
+</body>
+</html>
